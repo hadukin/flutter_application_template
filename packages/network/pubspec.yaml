@@ -1,0 +1,25 @@
+name: network
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  di:
+    path: ../di
+  rxdart: ^0.28.0
+  dio: ^5.8.0+1
+  pretty_dio_logger: ^1.4.0
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.4
