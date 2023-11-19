@@ -1,0 +1,2 @@
+# melos_managed_dependency_overrides: shared_dependencies,core,data,di,domain
+{dependency_overrides: {core: {path: ../core}, data: {path: ../data}, di: {path: ../di}, domain: {path: ../domain}}}

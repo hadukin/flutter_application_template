@@ -1,0 +1,12 @@
+# flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path_android: "assets/launcher_icon/ic_launcher.png"
+  image_path_ios: "assets/launcher_icon/ic_launcher.png"
+  remove_alpha_channel_ios: true
+  min_sdk_android: 21
+  background_color_ios: "#26c3e2"
+  adaptive_icon_background: "assets/launcher_icon/ic_launcher.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/launcher_icon/ic_launcher.png" # only available for Android 8.0 devices and above
+  adaptive_icon_monochrome: "assets/launcher_icon/ic_launcher.png" # only available for Android 13 devices and above
