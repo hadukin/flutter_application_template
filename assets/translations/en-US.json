@@ -1,0 +1,8 @@
+{
+  "common": {
+    "app_name": "Application Template"
+  },
+  "launch": {
+    "title": "Launch view"
+  }
+}

@@ -1,0 +1,73 @@
+name: flutter_application_template
+
+packages:
+  - ./
+  - packages/*
+
+sdkPath: .fvm/flutter_sdk
+
+scripts:
+  gen:
+    description: Генерация кода и его форматирование
+    run: melos run gen:build_runner --no-select
+    failFast: true
+
+  gen:build_runner:
+    description: Генерация кода и зависимостей используя build_runner
+    run: fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+    exec: { concurrency: 1 }
+    orderDependents: true
+    failFast: true
+    packageFilters:
+      dependsOn: build_runner
+
+  locale:
+    description: Генерация файлов локализации
+    run: dart run easy_localization:generate --source-dir ./assets/translations && dart run easy_localization:generate -S assets/translations -f keys -o locale_keys.g.dart
+    # run: fvm flutter pub run intl_utils:generate
+    failFast: true
+    concurrency: 1
+
+  assets:
+    description: Генерация ассетов
+    run: dart run build_runner build --delete-conflicting-outputs
+    failFast: true
+
+  check:
+    description: Подготовка к коммиту/валидация на CI, что нет основных проблем
+    run: melos analyze && melos test
+    failFast: true
+
+  analyze:
+    description: Подготовка к коммиту/валидация на CI, что нет основных проблем
+    run: melos analyze
+    failFast: true
+    exec:
+      concurrency: 5
+
+  test:
+    description: Подготовка к коммиту/валидация на CI, что нет основных проблем
+    run: melos test
+    failFast: true
+
+  icons:
+    description: Генерация иконок приложения
+    run: fvm flutter pub run flutter_launcher_icons
+    failFast: true
+
+  splash:
+    description: Генерация splash screen
+    run: dart run flutter_native_splash:create
+    failFast: true
+
+  release_apk:
+    description: Сборка релизного приложения для андроид
+    run: fvm flutter build apk -t lib/main.dart --release
+    packageFilters:
+      dependsOn: melos
+
+  release_aab:
+    description: Сборка релизного приложения для андроид
+    run: fvm flutter build appbundle -t lib/main.dart --release
+    packageFilters:
+      dependsOn: melos

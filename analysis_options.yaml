@@ -1,0 +1,13 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/**/*.freezed.dart
+
+  errors:
+    unrelated_type_equality_checks: error
+    unnecessary_null_comparison: error
+    depend_on_referenced_packages: error
+
+linter:
+  rules:

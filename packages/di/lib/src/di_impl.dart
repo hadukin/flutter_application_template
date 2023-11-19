@@ -1,0 +1,43 @@
+part of 'di.dart';
+
+final class _DiImpl implements Di {
+  final _getIt = GetIt.instance;
+
+  @override
+  T getIt<T extends Object>({String? instanceName, param1, param2}) {
+    return _getIt.get<T>();
+  }
+
+  @override
+  void registerSingleton<T extends Object>(T instance, {String? instanceName}) {
+    _getIt.registerSingleton(instance, instanceName: instanceName);
+  }
+
+  @override
+  void registerLazySingleton<T extends Object>(T instance, {String? instanceName}) {
+    _getIt.registerSingleton(instance, instanceName: instanceName);
+  }
+
+  @override
+  void registerFactory<T extends Object>(T Function() factoryFunc, {String? instanceName}) {
+    _getIt.registerFactory(factoryFunc, instanceName: instanceName);
+  }
+
+  @override
+  Future<void> unregister<T extends Object>({
+    Object? instance,
+    String? instanceName,
+    FutureOr Function(T value)? disposingFunction,
+  }) async {
+    _getIt.unregister(
+      instance: instance,
+      instanceName: instanceName,
+      disposingFunction: disposingFunction,
+    );
+  }
+
+  @override
+  bool isRegistered<T extends Object>({Object? instance, String? instanceName}) {
+    return _getIt.isRegistered(instance: instance, instanceName: instanceName);
+  }
+}
