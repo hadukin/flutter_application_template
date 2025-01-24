@@ -6,7 +6,7 @@ import 'package:flutter_application_template/router_implementation/go_router_imp
 import 'package:flutter_application_template/services/snack_bar_service/snack_bar_service.dart';
 import 'package:flutter_application_template/services/snack_bar_service/snack_bar_service_impl.dart';
 
-class UiDiModule implements BaseDIModule {
+class UiDiModule implements BaseDiModule {
   @override
   Future<void> register(Di instance) async {
     final app = AppLinks();

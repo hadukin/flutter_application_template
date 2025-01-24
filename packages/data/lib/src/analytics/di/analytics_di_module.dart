@@ -3,7 +3,7 @@ import 'package:data/src/analytics/debug_analytic_provider.dart';
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
 
-class AnalyticsDiModule implements BaseDIModule {
+class AnalyticsDiModule implements BaseDiModule {
   @override
   Future<void> register(Di instance) async {
     instance.registerSingleton<AnalyticsService>(AnalyticsServiceImpl(

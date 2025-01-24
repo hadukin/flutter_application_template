@@ -15,7 +15,7 @@ export 'src/authorization/use_case/index.dart';
 export 'src/authorization/entity/index.dart';
 
 // Store
-export 'src/store/impl/tokens_store.dart';
+export 'src/store/impl/user_store.dart';
 
 // Common
 export 'src/common/transformable.dart';

@@ -6,7 +6,7 @@ import 'package:data/src/authorization/repository/authorization_repository_impl.
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
 
-class AuthorizationDiModule implements BaseDIModule {
+class AuthorizationDiModule implements BaseDiModule {
   @override
   Future<void> register(Di instance) async {
     instance.registerSingleton<AuthorizationRemoteDataSource>(

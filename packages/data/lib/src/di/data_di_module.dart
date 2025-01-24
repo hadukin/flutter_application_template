@@ -2,7 +2,7 @@ import 'package:data/src/analytics/di/analytics_di_module.dart';
 import 'package:data/src/authorization/di/authorization_di_module.dart';
 import 'package:di/di.dart';
 
-class DataDiModule implements BaseDIModule {
+class DataDiModule implements BaseDiModule {
   const DataDiModule();
 
   @override

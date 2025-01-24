@@ -1,9 +1,9 @@
 import 'package:di/src/di.dart';
 
-abstract interface class BaseDIModule {
+abstract interface class BaseDiModule {
   Future<void> register(Di instance);
 }
 
 extension DiExtension on Di {
-  Future<void> registerModule(BaseDIModule module) => module.register(this);
+  Future<void> registerModule(BaseDiModule module) => module.register(this);
 }

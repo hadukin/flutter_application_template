@@ -15,13 +15,21 @@ final class Application {
     required String baseUrl,
     required bool isDebug,
   }) async {
+    await _registerStore();
     await Di.instance.registerModule(const StorageDiModule());
     await Di.instance.registerModule(NetworkDiModule(
       baseUrl: baseUrl,
       isDebug: isDebug,
     ));
     await Di.instance.registerModule(const DataDiModule());
+    await _checkTokens();
+  }
 
+  Future<void> _registerStore() async {
+    Di.instance.registerSingleton<UserStore>(UserStore());
+  }
+
+  Future<void> _checkTokens() async {
     final tokens = await Di.instance.getIt<GetTokensFromLocalStorageUseCase>().call(
           const EmptyUseCaseParams(),
         );

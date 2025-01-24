@@ -7,7 +7,7 @@ import 'package:network/src/client/dio_client/client_provider.dart';
 import 'package:network/src/client/interceptors/authorization_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class NetworkDiModule implements BaseDIModule {
+class NetworkDiModule implements BaseDiModule {
   final bool _isDebug;
   final String _baseUrl;
 
