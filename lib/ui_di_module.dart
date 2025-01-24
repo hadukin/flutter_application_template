@@ -8,7 +8,7 @@ import 'package:flutter_application_template/services/snack_bar_service/snack_ba
 
 class UiDiModule implements BaseDIModule {
   @override
-  Future<void> updateInjections(Di instance) async {
+  Future<void> register(Di instance) async {
     final app = AppLinks();
 
     final initialLink = await app.getInitialLink();

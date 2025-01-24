@@ -3,12 +3,13 @@ library domain;
 // Service
 export 'src/analytics/analytics_provider.dart';
 export 'src/analytics/analytics_service.dart';
+export 'src/analytics/base_analytics_service.dart';
 
 // Repository
 export 'src/authorization/repository/authorization_repository.dart';
 
 // Use case
-export 'src/authorization/use_case/authorization/index.dart';
+export 'src/authorization/use_case/index.dart';
 
 // Entity
 export 'src/authorization/entity/index.dart';

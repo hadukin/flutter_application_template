@@ -7,6 +7,6 @@ part 'user_entity.freezed.dart';
 class UserEntity with _$UserEntity {
   factory UserEntity({
     required String email,
-    required Tokens credentials,
+    required TokensEntity credentials,
   }) = _UserEntity;
 }

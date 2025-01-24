@@ -1,1 +1,1 @@
-typedef Tokens = ({String? access, String? refresh})?;
+typedef TokensEntity = ({String? access, String? refresh})?;

@@ -6,14 +6,14 @@ class DataDiModule implements BaseDIModule {
   const DataDiModule();
 
   @override
-  Future<void> updateInjections(Di instance) async {
+  Future<void> register(Di instance) async {
     final modules = [
       AnalyticsDiModule(),
       AuthorizationDiModule(),
     ];
 
     for (final module in modules) {
-      await module.updateInjections(instance);
+      await module.register(instance);
     }
   }
 }

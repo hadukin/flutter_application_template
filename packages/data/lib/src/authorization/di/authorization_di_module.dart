@@ -8,7 +8,7 @@ import 'package:domain/domain.dart';
 
 class AuthorizationDiModule implements BaseDIModule {
   @override
-  Future<void> updateInjections(Di instance) async {
+  Future<void> register(Di instance) async {
     instance.registerSingleton<AuthorizationRemoteDataSource>(
       AuthorizationRemoteDataSourceImpl(
         api: instance.getIt(),
@@ -31,21 +31,15 @@ class AuthorizationDiModule implements BaseDIModule {
 
     instance.registerFactory<SignUpUseCase>(() => SignUpUseCase(
           repository: instance.getIt(),
-          tokensStore: instance.getIt(),
         ));
     instance.registerFactory<SignOutUseCase>(() => SignOutUseCase(
           repository: instance.getIt(),
-          tokensStore: instance.getIt(),
         ));
     instance.registerFactory<SignInUseCase>(() => SignInUseCase(
           repository: instance.getIt(),
-          tokensStore: instance.getIt(),
         ));
-    instance.registerFactory<IsAuthorizedUseCase>(
-      () => IsAuthorizedUseCase(
-        repository: instance.getIt(),
-        tokensStore: instance.getIt(),
-      ),
+    instance.registerFactory<GetTokensFromLocalStorageUseCase>(
+      () => GetTokensFromLocalStorageUseCase(repository: instance.getIt()),
     );
     instance.registerFactory<GetAllUserUseCase>(
       () => GetAllUserUseCase(repository: instance.getIt()),

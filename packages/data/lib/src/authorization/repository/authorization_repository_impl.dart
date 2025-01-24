@@ -3,14 +3,14 @@ import 'package:data/src/authorization/data_source/remote/authorization_remote_d
 import 'package:domain/domain.dart';
 
 class AuthorizationRepositoryImpl implements AuthorizationRepository {
-  final AuthorizationRemoteDataSource _authorizationRemoteDataSource;
-  final AuthorizationLocalDataSource _authorizationLocalDataSource;
+  final AuthorizationRemoteDataSource _remote;
+  final AuthorizationLocalDataSource _local;
 
   AuthorizationRepositoryImpl({
     required AuthorizationRemoteDataSource authorizationRemoteDataSource,
     required AuthorizationLocalDataSource authorizationLocalDataSource,
-  })  : _authorizationRemoteDataSource = authorizationRemoteDataSource,
-        _authorizationLocalDataSource = authorizationLocalDataSource;
+  })  : _remote = authorizationRemoteDataSource,
+        _local = authorizationLocalDataSource;
 
   @override
   Future<UserEntity> signUp({
@@ -18,11 +18,11 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
     required String password,
   }) async {
     try {
-      final response = await _authorizationRemoteDataSource.signUp(
+      final response = await _remote.signUp(
         email: email,
         password: password,
       );
-      await _authorizationLocalDataSource.saveTokens(
+      await _local.saveTokens(
         access: response.credentials?.access,
         refresh: response.credentials?.refresh,
       );
@@ -38,15 +38,14 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
     required String password,
   }) async {
     try {
-      final response = await _authorizationRemoteDataSource.signIn(
+      final response = await _remote.signIn(
         email: email,
         password: password,
       );
-      await _authorizationLocalDataSource.saveTokens(
+      await _local.saveTokens(
         access: response.credentials?.access,
         refresh: response.credentials?.refresh,
       );
-
       return response;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(error, stackTrace);
@@ -56,24 +55,24 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
   @override
   Future<void> signOut() async {
     try {
-      await _authorizationLocalDataSource.deleteTokens();
+      await _local.deleteTokens();
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
   @override
-  Future<Tokens> isAuthorized() {
-    return _authorizationLocalDataSource.getTokens();
+  Future<TokensEntity> getTokens() {
+    return _local.getTokens();
   }
 
   @override
   Future<List<UserEntity>> getUsers() {
-    return _authorizationLocalDataSource.getUsers();
+    return _local.getUsers();
   }
 
   @override
   Future<void> saveUser(UserEntity user) async {
-    _authorizationLocalDataSource.saveUser(user);
+    _local.saveUser(user);
   }
 }

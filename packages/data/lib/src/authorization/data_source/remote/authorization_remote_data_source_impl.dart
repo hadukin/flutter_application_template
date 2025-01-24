@@ -1,4 +1,5 @@
 import 'package:data/src/authorization/data_source/remote/authorization_remote_data_source.dart';
+import 'package:data/src/authorization/mappers/user_mapper.dart';
 import 'package:domain/domain.dart';
 import 'package:network/network.dart';
 
@@ -16,7 +17,7 @@ class AuthorizationRemoteDataSourceImpl implements AuthorizationRemoteDataSource
   }) async {
     final dto = await _api.signUp(email: email, password: password);
 
-    return dto.transform();
+    return UserMapper.transform(dto);
   }
 
   @override
@@ -26,7 +27,7 @@ class AuthorizationRemoteDataSourceImpl implements AuthorizationRemoteDataSource
   }) async {
     final dto = await _api.signIn(email: email, password: password);
 
-    return dto.transform();
+    return UserMapper.transform(dto);
   }
 
   @override

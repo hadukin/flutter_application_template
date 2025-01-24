@@ -11,7 +11,7 @@ class StorageDiModule implements BaseDIModule {
   const StorageDiModule();
 
   @override
-  Future<void> updateInjections(Di instance) async {
+  Future<void> register(Di instance) async {
     instance.registerSingleton<SecureStorage>(SecureStorageImpl());
     instance.registerSingleton<PreferencesStorage>(PreferencesStorageImpl());
     instance.registerSingleton<Database>(DatabaseImpl(db: Db()));
