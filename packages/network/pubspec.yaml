@@ -10,11 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  domain:
-    path: ../domain
   di:
     path: ../di
+  # storage:
+  #   path: ../storage
 
+  rxdart: ^0.27.7
   freezed_annotation: ^2.4.1
   dio: ^5.3.3
   pretty_dio_logger: ^1.3.1
@@ -28,5 +29,3 @@ dev_dependencies:
   freezed: ^2.5.2
   build_runner: ^2.4.10
   json_serializable: ^6.8.0
-
-flutter:

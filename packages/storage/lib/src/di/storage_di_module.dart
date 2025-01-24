@@ -7,11 +7,11 @@ import 'package:storage/src/preferences_storage/preferences_storage_impl.dart';
 import 'package:storage/src/secure_storage/secure_storage.dart';
 import 'package:storage/src/secure_storage/secure_storage_impl.dart';
 
-class StorageDiModule implements BaseDIModule {
+class StorageDiModule implements BaseDiModule {
   const StorageDiModule();
 
   @override
-  Future<void> updateInjections(Di instance) async {
+  Future<void> register(Di instance) async {
     instance.registerSingleton<SecureStorage>(SecureStorageImpl());
     instance.registerSingleton<PreferencesStorage>(PreferencesStorageImpl());
     instance.registerSingleton<Database>(DatabaseImpl(db: Db()));

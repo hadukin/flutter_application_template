@@ -13,7 +13,7 @@ abstract interface class AuthorizationRepository {
 
   Future<void> signOut();
 
-  Future<Tokens> isAuthorized();
+  Future<TokensEntity> getTokens();
 
   Future<List<UserEntity>> getUsers();
 

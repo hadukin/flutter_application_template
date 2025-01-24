@@ -1,9 +1,9 @@
 import 'package:di/src/di.dart';
 
-abstract interface class BaseDIModule {
-  Future<void> updateInjections(Di instance);
+abstract interface class BaseDiModule {
+  Future<void> register(Di instance);
 }
 
 extension DiExtension on Di {
-  Future<void> installModule(BaseDIModule module) => module.updateInjections(this);
+  Future<void> registerModule(BaseDiModule module) => module.register(this);
 }

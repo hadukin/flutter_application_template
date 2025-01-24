@@ -5,23 +5,17 @@ import 'package:network/src/common/base_request.dart';
 part 'sign_up_request.g.dart';
 
 @JsonSerializable()
-class SignUpRequest implements BaseRequest {
+final class SignUpRequest implements BaseRequest {
   final String email;
   final String password;
 
-  SignUpRequest({
+  const SignUpRequest({
     required this.email,
     required this.password,
   });
 
-  factory SignUpRequest.fromJson(Map<String, dynamic> json) => _$SignUpRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$SignUpRequestToJson(this);
-
   @override
-  Map<String, dynamic>? get data => {
-        'email': email,
-        'password': password,
-      };
+  Map<String, dynamic>? get data => _$SignUpRequestToJson(this);
 
   @override
   FormData? get formData => null;

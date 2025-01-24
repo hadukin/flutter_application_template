@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:domain/domain.dart';
+import 'package:network/network.dart';
 import 'package:network/src/common/base_request.dart';
 import 'package:network/src/client/dio_client/impl/base_dio_client_provider.dart';
 
 final class DioClientProviderImpl extends BaseDioClientProvider {
   final Dio _dio;
-  final TokensStore _tokenStore;
+  final TokenStore _tokenStore;
 
   DioClientProviderImpl({
     required Dio dio,
-    required TokensStore tokenStore,
+    required TokenStore tokenStore,
   })  : _dio = dio,
         _tokenStore = tokenStore;
 

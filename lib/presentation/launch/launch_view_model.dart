@@ -12,7 +12,6 @@ part 'launch_view_model.freezed.dart';
 class LaunchViewModel extends Cubit<LaunchState> with FieldValidatorMixin {
   final SignUpUseCase _signUpUseCase;
   final SignInUseCase _signInUseCase;
-  final IsAuthorizedUseCase _isAuthorizedUseCase;
   final BaseRouter _router;
   final SnackBarService _snackBarService;
 
@@ -20,10 +19,8 @@ class LaunchViewModel extends Cubit<LaunchState> with FieldValidatorMixin {
     required BaseRouter router,
     required SnackBarService snackBarService,
     required SignUpUseCase signUpUseCase,
-    required IsAuthorizedUseCase isAuthorizedUseCase,
     required SignInUseCase signInUseCase,
   })  : _signUpUseCase = signUpUseCase,
-        _isAuthorizedUseCase = isAuthorizedUseCase,
         _router = router,
         _snackBarService = snackBarService,
         _signInUseCase = signInUseCase,

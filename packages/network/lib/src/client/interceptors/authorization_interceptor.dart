@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:domain/domain.dart';
-import 'package:network/config.dart';
+import 'package:network/src/common/config.dart';
+import 'package:network/network.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioAuthorizationInterceptor extends QueuedInterceptor {
   final Dio _dio;
-  final TokensStore _tokenStore;
   final bool _isDebug;
+  final TokenStore _tokenStore;
 
   DioAuthorizationInterceptor({
     required Dio dio,
     required bool isDebug,
-    required TokensStore tokenStore,
+    required TokenStore tokenStore,
   })  : _dio = dio,
         _isDebug = isDebug,
         _tokenStore = tokenStore;
@@ -55,14 +55,17 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
   }
 
   Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
-    requestOptions.headers[NetworkConfig.authHeader] = '${NetworkConfig.bearerPrefix} ${_tokenStore.value?.access}';
+    final accessToken = _tokenStore.value?.access;
+    if (accessToken != null) {
+      requestOptions.headers[NetworkConfig.authHeader] = '${NetworkConfig.bearerPrefix} $accessToken';
+    }
 
     final options = Options(
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
 
-    return _dio.request<dynamic>(
+    return _dio.request(
       requestOptions.path,
       options: options,
       data: requestOptions.data,

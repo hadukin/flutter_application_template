@@ -16,7 +16,7 @@ final class AuthorizationLocalDataSourceImpl implements AuthorizationLocalDataSo
         _secureStorage = secureStorage;
 
   @override
-  Future<Tokens> getTokens() async {
+  Future<TokensEntity> getTokens() async {
     final access = await _secureStorage.read(_accessTokenKey);
     final refresh = await _secureStorage.read(_refreshTokenKey);
 

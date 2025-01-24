@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 
 abstract base class BaseAnalyticsService implements AnalyticsService {
-  final Set<AnalyticsProvider> _providers;
+  final List<AnalyticsProvider> _providers;
 
-  BaseAnalyticsService({required Set<AnalyticsProvider> providers}) : _providers = providers;
+  BaseAnalyticsService({required List<AnalyticsProvider> providers}) : _providers = providers;
 
   @override
   void track(

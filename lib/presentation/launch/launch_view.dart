@@ -28,7 +28,6 @@ class _LaunchViewState extends State<LaunchView> {
           router: Di.instance.getIt(),
           signUpUseCase: Di.instance.getIt(),
           signInUseCase: Di.instance.getIt(),
-          isAuthorizedUseCase: Di.instance.getIt(),
           snackBarService: Di.instance.getIt(),
         );
       },

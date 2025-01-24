@@ -11,16 +11,36 @@ final class Application {
 
   static Application get instance => _instance;
 
-  Future<void> installDependencies({
+  Future<void> registerDependencies({
     required String baseUrl,
     required bool isDebug,
   }) async {
-    await Di.instance.installModule(const StorageDiModule());
-    Di.instance.registerSingleton<TokensStore>(TokensStore());
-    await Di.instance.installModule(NetworkDiModule(
+    await _registerStore();
+    await Di.instance.registerModule(const StorageDiModule());
+    await Di.instance.registerModule(NetworkDiModule(
       baseUrl: baseUrl,
       isDebug: isDebug,
     ));
-    await Di.instance.installModule(const DataDiModule());
+    await Di.instance.registerModule(const DataDiModule());
+    await _checkTokens();
+  }
+
+  Future<void> _registerStore() async {
+    Di.instance.registerSingleton<UserStore>(UserStore());
+  }
+
+  Future<void> _checkTokens() async {
+    final tokens = await Di.instance.getIt<GetTokensFromLocalStorageUseCase>().call(
+          const EmptyUseCaseParams(),
+        );
+
+    final tokenStore = Di.instance.getIt<TokenStore>();
+
+    switch (tokens) {
+      case UseCaseSuccess(data: final credentials):
+        tokenStore.setValue(credentials);
+      case UseCaseFailure(exception: final error):
+        print(error);
+    }
   }
 }
