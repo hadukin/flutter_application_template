@@ -3,14 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class GoRouterConfigImpl implements BaseRouterConfig {
-  const GoRouterConfigImpl({
-    required GoRouter router,
-    required String? initialDeepLink,
-  })  : _goRouter = router,
-        _initialDeepLink = initialDeepLink;
+  const GoRouterConfigImpl({required GoRouter router}) : _goRouter = router;
 
   final GoRouter _goRouter;
-  final String? _initialDeepLink;
 
   @override
   RouteInformationParser<Object>? get routeInformationParser => _goRouter.routeInformationParser;

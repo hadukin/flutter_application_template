@@ -5,13 +5,10 @@ import 'package:go_router/go_router.dart';
 
 class GoRouterImpl implements BaseRouter {
   final GoRouter router;
-  final String? initialDeepLink;
 
-  GoRouterImpl({
-    required this.router,
-    required this.initialDeepLink,
-  })  : navigator = GoRouterNavigatorImpl(router: router),
-        config = GoRouterConfigImpl(router: router, initialDeepLink: initialDeepLink);
+  GoRouterImpl({required this.router})
+      : navigator = GoRouterNavigatorImpl(router: router),
+        config = GoRouterConfigImpl(router: router);
 
   @override
   late BaseNavigator navigator;

@@ -18,10 +18,7 @@ class UiDiModule implements BaseDiModule {
     //   initialDeepLink: '/launch',
     // ));
 
-    instance.registerSingleton<BaseRouter>(GoRouterImpl(
-      router: gorouter,
-      initialDeepLink: '/launch',
-    ));
+    instance.registerSingleton<BaseRouter>(GoRouterImpl(router: gorouter));
 
     instance.registerLazySingleton<SnackBarService>(SnackBarServiceImpl());
   }
