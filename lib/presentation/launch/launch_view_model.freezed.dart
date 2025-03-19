@@ -19,7 +19,9 @@ mixin _$LaunchState {
   bool get isLoading => throw _privateConstructorUsedError;
   UserEntity? get user => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LaunchStateCopyWith<LaunchState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$LaunchStateCopyWithImpl<$Res, $Val extends LaunchState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +67,8 @@ class _$LaunchStateCopyWithImpl<$Res, $Val extends LaunchState>
     ) as $Val);
   }
 
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserEntityCopyWith<$Res>? get user {
@@ -98,6 +104,8 @@ class __$$LaunchStateImplCopyWithImpl<$Res>
       _$LaunchStateImpl _value, $Res Function(_$LaunchStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +153,9 @@ class _$LaunchStateImpl implements _LaunchState {
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LaunchStateImplCopyWith<_$LaunchStateImpl> get copyWith =>
@@ -161,8 +171,11 @@ abstract class _LaunchState implements LaunchState {
   bool get isLoading;
   @override
   UserEntity? get user;
+
+  /// Create a copy of LaunchState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LaunchStateImplCopyWith<_$LaunchStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

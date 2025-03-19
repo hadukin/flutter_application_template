@@ -19,7 +19,9 @@ mixin _$SignUpParams {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignUpParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignUpParamsCopyWith<SignUpParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$SignUpParamsCopyWithImpl<$Res, $Val extends SignUpParams>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignUpParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$SignUpParamsImplCopyWithImpl<$Res>
       _$SignUpParamsImpl _value, $Res Function(_$SignUpParamsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignUpParams
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,7 +134,9 @@ class _$SignUpParamsImpl implements _SignUpParams {
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignUpParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignUpParamsImplCopyWith<_$SignUpParamsImpl> get copyWith =>
@@ -144,8 +152,11 @@ abstract class _SignUpParams implements SignUpParams {
   String get email;
   @override
   String get password;
+
+  /// Create a copy of SignUpParams
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignUpParamsImplCopyWith<_$SignUpParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

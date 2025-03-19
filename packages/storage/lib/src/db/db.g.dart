@@ -388,22 +388,112 @@ typedef $$UsersTableTableUpdateCompanionBuilder = UsersTableCompanion Function({
   Value<int> rowid,
 });
 
+class $$UsersTableTableFilterComposer extends Composer<_$Db, $UsersTableTable> {
+  $$UsersTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get localId => $composableBuilder(
+      column: $table.localId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createAt => $composableBuilder(
+      column: $table.createAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updateAt => $composableBuilder(
+      column: $table.updateAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get accessToken => $composableBuilder(
+      column: $table.accessToken, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get refreshToken => $composableBuilder(
+      column: $table.refreshToken, builder: (column) => ColumnFilters(column));
+}
+
+class $$UsersTableTableOrderingComposer
+    extends Composer<_$Db, $UsersTableTable> {
+  $$UsersTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get localId => $composableBuilder(
+      column: $table.localId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createAt => $composableBuilder(
+      column: $table.createAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updateAt => $composableBuilder(
+      column: $table.updateAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get accessToken => $composableBuilder(
+      column: $table.accessToken, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get refreshToken => $composableBuilder(
+      column: $table.refreshToken,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$UsersTableTableAnnotationComposer
+    extends Composer<_$Db, $UsersTableTable> {
+  $$UsersTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get localId =>
+      $composableBuilder(column: $table.localId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createAt =>
+      $composableBuilder(column: $table.createAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updateAt =>
+      $composableBuilder(column: $table.updateAt, builder: (column) => column);
+
+  GeneratedColumn<String> get email =>
+      $composableBuilder(column: $table.email, builder: (column) => column);
+
+  GeneratedColumn<String> get accessToken => $composableBuilder(
+      column: $table.accessToken, builder: (column) => column);
+
+  GeneratedColumn<String> get refreshToken => $composableBuilder(
+      column: $table.refreshToken, builder: (column) => column);
+}
+
 class $$UsersTableTableTableManager extends RootTableManager<
     _$Db,
     $UsersTableTable,
     UserDatabase,
     $$UsersTableTableFilterComposer,
     $$UsersTableTableOrderingComposer,
+    $$UsersTableTableAnnotationComposer,
     $$UsersTableTableCreateCompanionBuilder,
-    $$UsersTableTableUpdateCompanionBuilder> {
+    $$UsersTableTableUpdateCompanionBuilder,
+    (UserDatabase, BaseReferences<_$Db, $UsersTableTable, UserDatabase>),
+    UserDatabase,
+    PrefetchHooks Function()> {
   $$UsersTableTableTableManager(_$Db db, $UsersTableTable table)
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$UsersTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$UsersTableTableOrderingComposer(ComposerState(db, table)),
+          createFilteringComposer: () =>
+              $$UsersTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$UsersTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$UsersTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
             Value<String> localId = const Value.absent(),
             Value<DateTime> createAt = const Value.absent(),
@@ -440,76 +530,25 @@ class $$UsersTableTableTableManager extends RootTableManager<
             refreshToken: refreshToken,
             rowid: rowid,
           ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
         ));
 }
 
-class $$UsersTableTableFilterComposer
-    extends FilterComposer<_$Db, $UsersTableTable> {
-  $$UsersTableTableFilterComposer(super.$state);
-  ColumnFilters<String> get localId => $state.composableBuilder(
-      column: $state.table.localId,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<DateTime> get createAt => $state.composableBuilder(
-      column: $state.table.createAt,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<DateTime> get updateAt => $state.composableBuilder(
-      column: $state.table.updateAt,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<String> get email => $state.composableBuilder(
-      column: $state.table.email,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<String> get accessToken => $state.composableBuilder(
-      column: $state.table.accessToken,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<String> get refreshToken => $state.composableBuilder(
-      column: $state.table.refreshToken,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-}
-
-class $$UsersTableTableOrderingComposer
-    extends OrderingComposer<_$Db, $UsersTableTable> {
-  $$UsersTableTableOrderingComposer(super.$state);
-  ColumnOrderings<String> get localId => $state.composableBuilder(
-      column: $state.table.localId,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<DateTime> get createAt => $state.composableBuilder(
-      column: $state.table.createAt,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<DateTime> get updateAt => $state.composableBuilder(
-      column: $state.table.updateAt,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<String> get email => $state.composableBuilder(
-      column: $state.table.email,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<String> get accessToken => $state.composableBuilder(
-      column: $state.table.accessToken,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<String> get refreshToken => $state.composableBuilder(
-      column: $state.table.refreshToken,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-}
+typedef $$UsersTableTableProcessedTableManager = ProcessedTableManager<
+    _$Db,
+    $UsersTableTable,
+    UserDatabase,
+    $$UsersTableTableFilterComposer,
+    $$UsersTableTableOrderingComposer,
+    $$UsersTableTableAnnotationComposer,
+    $$UsersTableTableCreateCompanionBuilder,
+    $$UsersTableTableUpdateCompanionBuilder,
+    (UserDatabase, BaseReferences<_$Db, $UsersTableTable, UserDatabase>),
+    UserDatabase,
+    PrefetchHooks Function()>;
 
 class $DbManager {
   final _$Db _db;

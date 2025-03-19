@@ -17,10 +17,7 @@ final class Application {
   }) async {
     await _registerStore();
     await Di.instance.registerModule(const StorageDiModule());
-    await Di.instance.registerModule(NetworkDiModule(
-      baseUrl: baseUrl,
-      isDebug: isDebug,
-    ));
+    await Di.instance.registerModule(NetworkDiModule(baseUrl: baseUrl, isDebug: isDebug));
     await Di.instance.registerModule(const DataDiModule());
     await _checkTokens();
   }

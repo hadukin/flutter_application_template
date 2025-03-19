@@ -7,6 +7,10 @@ packages:
 sdkPath: .fvm/flutter_sdk
 
 scripts:
+  bricks:
+    description: Генерация кода и его форматирование
+    run: mason get
+
   gen:
     description: Генерация кода и его форматирование
     run: melos run gen:build_runner --no-select

@@ -3,6 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - lib/**/*.freezed.dart
+    - bricks/**
 
   errors:
     unrelated_type_equality_checks: error
