@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_secure_storage: ^9.2.4
-  shared_preferences: ^2.5.2
-  drift: ^2.26.0
-  drift_flutter: ^0.2.4
+  shared_preferences: ^2.5.3
+  drift: ^2.29.0
+  drift_flutter: ^0.2.7
   uuid: ^4.5.1
   di:
     path: ../di

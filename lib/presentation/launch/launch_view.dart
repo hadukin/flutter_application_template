@@ -6,6 +6,7 @@ import 'package:flutter_application_template/constants.dart';
 import 'package:flutter_application_template/generated/assets.gen.dart';
 import 'package:flutter_application_template/generated/locale_keys.g.dart';
 import 'package:flutter_application_template/presentation/launch/launch_view_model.dart';
+import 'package:flutter_application_template/ui_di_module.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -32,9 +33,7 @@ class _LaunchViewState extends State<LaunchView> {
       child: BlocBuilder<LaunchViewModel, LaunchState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text(LocaleKeys.launch_title.tr()),
-            ),
+            appBar: AppBar(title: Text(LocaleKeys.launch_title.tr())),
             body: SingleChildScrollView(
               child: Center(
                 child: IntrinsicWidth(
@@ -42,10 +41,7 @@ class _LaunchViewState extends State<LaunchView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        LocaleKeys.common_app_name.tr(),
-                        textAlign: TextAlign.center,
-                      ),
+                      Text(LocaleKeys.common_app_name.tr(), textAlign: TextAlign.center),
                       const SizedBox(height: 40),
                       Container(
                         width: 80,
@@ -53,9 +49,7 @@ class _LaunchViewState extends State<LaunchView> {
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: Assets.launcherIcon.icLauncher.provider(),
-                          ),
+                          image: DecorationImage(image: Assets.launcherIcon.icLauncher.provider()),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -66,13 +60,7 @@ class _LaunchViewState extends State<LaunchView> {
                       ElevatedButton(
                         onPressed: state.isLoading ? null : context.read<LaunchViewModel>().signIn,
                         child: state.isLoading
-                            ? SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2,
-                                ),
-                              )
+                            ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator.adaptive(strokeWidth: 2))
                             : const Text('Login'),
                       ),
                       Row(
@@ -90,7 +78,7 @@ class _LaunchViewState extends State<LaunchView> {
                             child: const Text('RU locale'),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

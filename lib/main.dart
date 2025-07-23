@@ -15,19 +15,25 @@ Future<void> main() async {
       await TaskWorker.instance.init();
       await Application.instance.registerDependencies();
       await Di.instance.registerModule(UiDiModule());
-      runApp(EasyLocalization(
-        path: Constants.easyLocalizationPath,
-        fallbackLocale: Constants.fallbackLocale,
-        supportedLocales: Constants.supportedLocales,
-        child: App(router: Di.instance.getIt<IRouter>()),
-      ));
+
+      final router = Di.instance.getIt<Graph>();
+
+      /// Example router listener
+      router.navigator.state.listen((event) {
+        print('LISTEN/ROUTE/URI: ${event.uri}');
+      });
+
+      runApp(
+        EasyLocalization(
+          path: Constants.easyLocalizationPath,
+          fallbackLocale: Constants.fallbackLocale,
+          supportedLocales: Constants.supportedLocales,
+          child: App(router: router),
+        ),
+      );
     },
     (error, stackTrace) {
-      Log.i.error(
-        '$error',
-        error: error,
-        stackTrace: stackTrace,
-      );
+      Log.i.error('$error', error: error, stackTrace: stackTrace);
     },
   );
 }

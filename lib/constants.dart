@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class Constants {
+  const Constants();
+
   static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   static const easyLocalizationPath = 'assets/translations';

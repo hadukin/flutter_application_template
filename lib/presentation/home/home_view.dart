@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:di/di.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_template/ui_di_module.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<IRouter>().navigator.navigate(
+                  Di.instance.getIt<Graph>().navigator.navigate(
                     '/profile/details/uuid-12345678',
                     queryArgs: {'userName': 'anatoly'},
                   );
@@ -31,25 +31,25 @@ class HomeView extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<IRouter>().navigator.push('/home/bottom-sheet-example');
+                  Di.instance.getIt<Graph>().navigator.push('/home/bottom-sheet-example');
                 },
                 child: Text('Open sheet'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<IRouter>().navigator.push('/bottom-sheet-example');
+                  Di.instance.getIt<Graph>().navigator.push('/bottom-sheet-example');
                 },
                 child: Text('Open sheet root'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<IRouter>().navigator.push('/root-dialog-example');
+                  Di.instance.getIt<Graph>().navigator.push('/root-dialog-example');
                 },
                 child: Text('Open dialog root'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<IRouter>().navigator.push('/root-cupertino-dialog-example');
+                  Di.instance.getIt<Graph>().navigator.push('/root-cupertino-dialog-example');
                 },
                 child: Text('Open cuprtino dialog root'),
               ),

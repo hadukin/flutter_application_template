@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_application_template/router_implementation/auto_router_impl/app_router.dart';
+import 'package:flutter_application_template/router/auto_router_impl/app_router.dart';
 
 final _currentIndex = ValueNotifier<int>(0);
 

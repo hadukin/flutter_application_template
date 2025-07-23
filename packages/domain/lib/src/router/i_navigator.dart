@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'types.dart';
 import 'package:flutter/widgets.dart';
 
-abstract base class INavigator with RouterQueryBuilderMixin {
-  const INavigator();
+abstract base class INavigator<D> with RouterQueryBuilderMixin {
+  INavigator();
 
   GlobalKey<NavigatorState> get navigatorKey;
 
@@ -25,4 +27,8 @@ abstract base class INavigator with RouterQueryBuilderMixin {
     QueryArgs queryArgs = const {},
     Object? extra,
   });
+
+  final controller = StreamController<D>();
+
+  Stream<D> get state => controller.stream;
 }

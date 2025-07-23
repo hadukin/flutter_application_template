@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters
+// ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters, constant_identifier_names
 
 import 'dart:ui';
 
@@ -14,7 +14,7 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> ru_RU = {
+  static const Map<String,dynamic> _ru_RU = {
   "common": {
     "app_name": "Шаблон приложения"
   },
@@ -22,7 +22,7 @@ class CodegenLoader extends AssetLoader{
     "title": "Стартовый экран"
   }
 };
-static const Map<String,dynamic> en_US = {
+static const Map<String,dynamic> _en_US = {
   "common": {
     "app_name": "Application Template"
   },
@@ -30,5 +30,5 @@ static const Map<String,dynamic> en_US = {
     "title": "Launch view"
   }
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"ru_RU": ru_RU, "en_US": en_US};
+static const Map<String, Map<String,dynamic>> mapLocales = {"ru_RU": _ru_RU, "en_US": _en_US};
 }

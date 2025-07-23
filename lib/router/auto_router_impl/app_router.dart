@@ -7,27 +7,22 @@ import 'package:flutter_application_template/presentation/profile/profile_detail
 import 'package:flutter_application_template/presentation/profile/profile_view.dart';
 import 'package:flutter_application_template/presentation/tabs_root/tabs_root_view.dart';
 import 'package:flutter_application_template/presentation/todo/todo_view.dart';
-import 'package:flutter_application_template/router_implementation/auto_router_impl/auto_route_router.dart';
+import 'package:flutter_application_template/router/auto_router_impl/auto_route_router.dart';
 
 part 'app_router.gr.dart';
 
-final class AutoRoutingSetupImpl implements IRoutingSetup {
+final class AutoRoutingSetupImpl implements IRouterBuilder {
   const AutoRoutingSetupImpl();
 
   @override
-  IRouter create() => AutoRouterImpl(router: AppRouter());
+  IRouter<AppRouter, RouterDetails> build() => AutoRouterImpl(router: AppRouter());
 }
 
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 class AppRouter extends RootStackRouter {
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(
-      page: LaunchRoute.page,
-      path: '/launch',
-      keepHistory: false,
-      initial: true,
-    ),
+    AutoRoute(page: LaunchRoute.page, path: '/launch', keepHistory: false, initial: true),
     AutoRoute(
       page: TabsRootRoute.page,
       path: '/',
@@ -35,38 +30,19 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: TabHomeRoute.page,
           path: 'home',
-          children: [
-            AutoRoute(
-              path: '',
-              page: HomeRoute.page,
-              initial: true,
-            ),
-          ],
+          children: [AutoRoute(path: '', page: HomeRoute.page, initial: true)],
         ),
         AutoRoute(
           page: TabTodoRoute.page,
           path: 'todo',
-          children: [
-            AutoRoute(
-              path: '',
-              page: TodoRoute.page,
-              initial: true,
-            ),
-          ],
+          children: [AutoRoute(path: '', page: TodoRoute.page, initial: true)],
         ),
         AutoRoute(
           page: TabProfileRoute.page,
           path: 'profile',
           children: [
-            AutoRoute(
-              initial: true,
-              path: '',
-              page: ProfileRoute.page,
-            ),
-            AutoRoute(
-              path: 'details/:userId',
-              page: ProfileDetailsRoute.page,
-            ),
+            AutoRoute(initial: true, path: '', page: ProfileRoute.page),
+            AutoRoute(path: 'details/:userId', page: ProfileDetailsRoute.page),
           ],
         ),
       ],
