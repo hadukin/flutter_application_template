@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:network/src/common/request_method.dart';
 
 abstract interface class BaseRequest {
   const BaseRequest();
@@ -13,5 +14,5 @@ abstract interface class BaseRequest {
 
   FormData? get formData;
 
-  String get method;
+  RequestMethod get method;
 }

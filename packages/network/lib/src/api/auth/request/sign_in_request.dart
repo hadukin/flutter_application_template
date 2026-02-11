@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:network/src/common/base_request.dart';
+import 'package:network/src/common/request_method.dart';
 
 part 'sign_in_request.g.dart';
 
@@ -27,7 +28,7 @@ final class SignInRequest implements BaseRequest {
   String get url => '/login';
 
   @override
-  String get method => 'POST';
+  RequestMethod get method => RequestMethod.POST;
 
   @override
   Map<String, String>? get headers => null;

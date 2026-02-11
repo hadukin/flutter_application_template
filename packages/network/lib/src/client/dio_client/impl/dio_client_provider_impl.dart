@@ -21,7 +21,7 @@ final class DioClientProviderImpl extends BaseDioClientProvider {
         data: request.data,
         queryParameters: request.queryParameters,
         options: Options(
-          method: request.method,
+          method: request.method.name,
           headers: buildHeaders(
             accessToken: _tokenStore.value?.access,
             request: request,
