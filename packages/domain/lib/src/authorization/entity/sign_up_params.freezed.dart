@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_entity.dart';
+part of 'sign_up_params.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,75 +13,76 @@ part of 'user_entity.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$UserEntity {
+mixin _$SignUpParams {
   String get email;
-  TokensEntity get credentials;
+  String get password;
 
-  /// Create a copy of UserEntity
+  /// Create a copy of SignUpParams
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<UserEntity> get copyWith =>
-      _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
+  $SignUpParamsCopyWith<SignUpParams> get copyWith =>
+      _$SignUpParamsCopyWithImpl<SignUpParams>(
+          this as SignUpParams, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserEntity &&
+            other is SignUpParams &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, credentials);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @override
   String toString() {
-    return 'UserEntity(email: $email, credentials: $credentials)';
+    return 'SignUpParams(email: $email, password: $password)';
   }
 }
 
 /// @nodoc
-abstract mixin class $UserEntityCopyWith<$Res> {
-  factory $UserEntityCopyWith(
-          UserEntity value, $Res Function(UserEntity) _then) =
-      _$UserEntityCopyWithImpl;
+abstract mixin class $SignUpParamsCopyWith<$Res> {
+  factory $SignUpParamsCopyWith(
+          SignUpParams value, $Res Function(SignUpParams) _then) =
+      _$SignUpParamsCopyWithImpl;
   @useResult
-  $Res call({String email, TokensEntity credentials});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
-class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
-  _$UserEntityCopyWithImpl(this._self, this._then);
+class _$SignUpParamsCopyWithImpl<$Res> implements $SignUpParamsCopyWith<$Res> {
+  _$SignUpParamsCopyWithImpl(this._self, this._then);
 
-  final UserEntity _self;
-  final $Res Function(UserEntity) _then;
+  final SignUpParams _self;
+  final $Res Function(SignUpParams) _then;
 
-  /// Create a copy of UserEntity
+  /// Create a copy of SignUpParams
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? email = null,
-    Object? credentials = freezed,
+    Object? password = null,
   }) {
     return _then(_self.copyWith(
       email: null == email
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      credentials: freezed == credentials
-          ? _self.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as TokensEntity,
+      password: null == password
+          ? _self.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [UserEntity].
-extension UserEntityPatterns on UserEntity {
+/// Adds pattern-matching-related methods to [SignUpParams].
+extension SignUpParamsPatterns on SignUpParams {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -96,12 +97,12 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserEntity value)? $default, {
+    TResult Function(_SignUpParams value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _UserEntity() when $default != null:
+      case _SignUpParams() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -123,11 +124,11 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_UserEntity value) $default,
+    TResult Function(_SignUpParams value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _UserEntity():
+      case _SignUpParams():
         return $default(_that);
       case _:
         throw StateError('Unexpected subclass');
@@ -148,11 +149,11 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserEntity value)? $default,
+    TResult? Function(_SignUpParams value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _UserEntity() when $default != null:
+      case _SignUpParams() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -173,13 +174,13 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, TokensEntity credentials)? $default, {
+    TResult Function(String email, String password)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _UserEntity() when $default != null:
-        return $default(_that.email, _that.credentials);
+      case _SignUpParams() when $default != null:
+        return $default(_that.email, _that.password);
       case _:
         return orElse();
     }
@@ -200,12 +201,12 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, TokensEntity credentials) $default,
+    TResult Function(String email, String password) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _UserEntity():
-        return $default(_that.email, _that.credentials);
+      case _SignUpParams():
+        return $default(_that.email, _that.password);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -225,12 +226,12 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, TokensEntity credentials)? $default,
+    TResult? Function(String email, String password)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _UserEntity() when $default != null:
-        return $default(_that.email, _that.credentials);
+      case _SignUpParams() when $default != null:
+        return $default(_that.email, _that.password);
       case _:
         return null;
     }
@@ -239,76 +240,77 @@ extension UserEntityPatterns on UserEntity {
 
 /// @nodoc
 
-class _UserEntity implements UserEntity {
-  const _UserEntity({required this.email, required this.credentials});
+class _SignUpParams implements SignUpParams {
+  const _SignUpParams({required this.email, required this.password});
 
   @override
   final String email;
   @override
-  final TokensEntity credentials;
+  final String password;
 
-  /// Create a copy of UserEntity
+  /// Create a copy of SignUpParams
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$UserEntityCopyWith<_UserEntity> get copyWith =>
-      __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
+  _$SignUpParamsCopyWith<_SignUpParams> get copyWith =>
+      __$SignUpParamsCopyWithImpl<_SignUpParams>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserEntity &&
+            other is _SignUpParams &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, credentials);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @override
   String toString() {
-    return 'UserEntity(email: $email, credentials: $credentials)';
+    return 'SignUpParams(email: $email, password: $password)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$UserEntityCopyWith<$Res>
-    implements $UserEntityCopyWith<$Res> {
-  factory _$UserEntityCopyWith(
-          _UserEntity value, $Res Function(_UserEntity) _then) =
-      __$UserEntityCopyWithImpl;
+abstract mixin class _$SignUpParamsCopyWith<$Res>
+    implements $SignUpParamsCopyWith<$Res> {
+  factory _$SignUpParamsCopyWith(
+          _SignUpParams value, $Res Function(_SignUpParams) _then) =
+      __$SignUpParamsCopyWithImpl;
   @override
   @useResult
-  $Res call({String email, TokensEntity credentials});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$UserEntityCopyWithImpl<$Res> implements _$UserEntityCopyWith<$Res> {
-  __$UserEntityCopyWithImpl(this._self, this._then);
+class __$SignUpParamsCopyWithImpl<$Res>
+    implements _$SignUpParamsCopyWith<$Res> {
+  __$SignUpParamsCopyWithImpl(this._self, this._then);
 
-  final _UserEntity _self;
-  final $Res Function(_UserEntity) _then;
+  final _SignUpParams _self;
+  final $Res Function(_SignUpParams) _then;
 
-  /// Create a copy of UserEntity
+  /// Create a copy of SignUpParams
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
     Object? email = null,
-    Object? credentials = freezed,
+    Object? password = null,
   }) {
-    return _then(_UserEntity(
+    return _then(_SignUpParams(
       email: null == email
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      credentials: freezed == credentials
-          ? _self.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as TokensEntity,
+      password: null == password
+          ? _self.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }

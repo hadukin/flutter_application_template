@@ -5,6 +5,8 @@ import 'package:di/di.dart';
 import 'package:get_it/get_it.dart';
 import 'package:network/network.dart';
 import 'package:storage/storage.dart';
+import 'package:injectable/injectable.dart';
+import 'di.config.dart';
 
 part 'di_impl.dart';
 
@@ -39,3 +41,11 @@ abstract final class Di {
     dynamic param2,
   });
 }
+
+final getIt = GetIt.instance;
+
+@InjectableInit(initializerName: 'init', preferRelativeImports: true, asExtension: true, externalPackageModulesAfter: [
+  ExternalModule(StoragePackageModule),
+  ExternalModule(DataPackageModule),
+])
+Future<void> configureDependencies() => _getIt.init();

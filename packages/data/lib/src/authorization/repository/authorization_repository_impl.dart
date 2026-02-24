@@ -1,7 +1,9 @@
 import 'package:data/src/authorization/data_source/local/authorization_local_data_source.dart';
 import 'package:data/src/authorization/data_source/remote/authorization_remote_data_source.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthorizationRepository)
 class AuthorizationRepositoryImpl implements AuthorizationRepository {
   final AuthorizationRemoteDataSource _remote;
   final AuthorizationLocalDataSource _local;

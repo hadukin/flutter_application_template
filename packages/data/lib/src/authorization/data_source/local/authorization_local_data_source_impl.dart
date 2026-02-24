@@ -1,7 +1,9 @@
 import 'package:data/src/authorization/data_source/local/authorization_local_data_source.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 import 'package:storage/storage.dart';
 
+@Singleton(as: AuthorizationLocalDataSource)
 final class AuthorizationLocalDataSourceImpl implements AuthorizationLocalDataSource {
   final _accessTokenKey = 'ACCESS_TOKEN';
   final _refreshTokenKey = 'REFRESH_TOKEN';

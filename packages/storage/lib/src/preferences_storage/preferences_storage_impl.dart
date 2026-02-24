@@ -1,10 +1,13 @@
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storage/src/preferences_storage/preferences_storage.dart';
 
+@Singleton(as: PreferencesStorage)
 class PreferencesStorageImpl implements PreferencesStorage {
   late final SharedPreferences _preferences;
 
   @override
+  @preResolve
   Future<void> init() async {
     _preferences = await SharedPreferences.getInstance();
   }
