@@ -7,6 +7,13 @@ version: 1.0.0+1
 environment:
   sdk: ^3.10.1
 
+workspace:
+  - packages/di
+  - packages/domain
+  - packages/network
+  - packages/storage
+  - packages/data
+
 dependencies:
   flutter:
     sdk: flutter
