@@ -24,7 +24,7 @@ final class _DiImpl implements Di {
 
   @override
   void registerLazySingleton<T extends Object>(T instance, {String? instanceName}) {
-    _getIt.registerSingleton(instance, instanceName: instanceName);
+    _getIt.registerLazySingleton(() => instance, instanceName: instanceName);
   }
 
   @override

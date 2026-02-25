@@ -14,9 +14,7 @@ class ProfileView extends StatelessWidget {
     bool isLoading = false;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+      appBar: AppBar(title: const Text('Profile')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,10 +60,7 @@ class ProfileView extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          final usecase = Di.instance.getIt<SignOutUseCase>();
-
-                          await usecase(const EmptyUseCaseParams());
-
+                          await Di.instance.getIt<AuthorizationUseCase>().signOut();
                           Di.instance.getIt<Graph>().navigator.navigate('/launch');
                         },
                         child: const Text('Logout'),
@@ -74,7 +69,7 @@ class ProfileView extends StatelessWidget {
                   ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),

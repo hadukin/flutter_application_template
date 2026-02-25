@@ -3,9 +3,7 @@ import 'package:domain/domain.dart';
 final class TodoUseCasesImpl implements TodoUseCases {
   final TodoRepository _todoRepository;
 
-  const TodoUseCasesImpl({
-    required TodoRepository todoRepository,
-  }) : _todoRepository = todoRepository;
+  const TodoUseCasesImpl({required TodoRepository todoRepository}) : _todoRepository = todoRepository;
 
   @override
   Future<TodoEntity> add(String title) async {

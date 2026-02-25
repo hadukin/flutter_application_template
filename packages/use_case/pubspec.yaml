@@ -1,10 +1,10 @@
-name: data
+name: use_case
 description: "A new Flutter package project."
 version: 0.0.1
-publish_to: "none"
+publish_to: none
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
+  sdk: ^3.10.1
   flutter: ">=1.17.0"
 
 resolution: workspace
@@ -12,16 +12,8 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  network:
-    path: ../network
   domain:
     path: ../domain
-  di:
-    path: ../di
-  storage:
-    path: ../storage
-  use_case:
-    path: ../use_case
 
 dev_dependencies:
   flutter_test:

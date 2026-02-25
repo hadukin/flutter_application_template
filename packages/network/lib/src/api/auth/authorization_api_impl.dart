@@ -15,9 +15,9 @@ final class AuthApiImpl implements AuthApi {
     required String email,
     required String password,
   }) async {
-    final result = await _client.request(SignInRequest(email: email, password: password));
+    final response = await _client.request(SignInRequest(email: email, password: password));
 
-    return UserDto.fromJson(result);
+    return UserDto.fromJson(response.data);
   }
 
   @override

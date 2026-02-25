@@ -5,37 +5,30 @@ import 'package:data/src/authorization/data_source/remote/authorization_remote_d
 import 'package:data/src/authorization/repository/authorization_repository_impl.dart';
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
+import 'package:use_case/use_case.dart';
 
 class AuthorizationDiModule implements BaseDiModule {
   @override
   Future<void> register(Di instance) async {
-    instance.registerSingleton<AuthorizationRemoteDataSource>(
+    instance.registerLazySingleton<AuthorizationRemoteDataSource>(
       AuthorizationRemoteDataSourceImpl(
         api: instance.getIt(),
       ),
     );
 
-    instance.registerSingleton<AuthorizationLocalDataSource>(
+    instance.registerLazySingleton<AuthorizationLocalDataSource>(
       AuthorizationLocalDataSourceImpl(
         secureStorage: instance.getIt(),
       ),
     );
 
-    instance.registerSingleton<AuthorizationRepository>(
+    instance.registerLazySingleton<AuthorizationRepository>(
       AuthorizationRepositoryImpl(
         authorizationRemoteDataSource: instance.getIt(),
         authorizationLocalDataSource: instance.getIt(),
       ),
     );
 
-    instance.registerFactory<SignInUseCase>(() => SignInUseCase(
-          repository: instance.getIt(),
-        ));
-    instance.registerFactory<SignOutUseCase>(() => SignOutUseCase(
-          repository: instance.getIt(),
-        ));
-    instance.registerFactory<GetTokensFromLocalStorageUseCase>(
-      () => GetTokensFromLocalStorageUseCase(repository: instance.getIt()),
-    );
+    instance.registerLazySingleton<AuthorizationUseCase>(AuthorizationUseCaseImpl(repository: instance.getIt()));
   }
 }

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:network/network.dart';
 import 'package:network/src/common/base_request.dart';
 import 'package:network/src/client/dio_client/impl/base_dio_client_provider.dart';
+import 'package:network/src/common/base_response.dart';
 
 final class DioClientProviderImpl extends BaseDioClientProvider {
   final Dio _dio;
@@ -14,7 +15,7 @@ final class DioClientProviderImpl extends BaseDioClientProvider {
         _tokenStore = tokenStore;
 
   @override
-  Future<dynamic> request(BaseRequest request) async {
+  Future<BaseResponse> request(BaseRequest request) async {
     try {
       final response = await _dio.request(
         request.url,
@@ -24,12 +25,11 @@ final class DioClientProviderImpl extends BaseDioClientProvider {
           method: request.method.name,
           headers: buildHeaders(
             accessToken: _tokenStore.value?.access,
-            request: request,
             headers: request.headers,
           ),
         ),
       );
-      return response.data;
+      return BaseResponse(statusCode: response.statusCode, data: response.data);
     } on DioException catch (error, stackTrace) {
       Error.throwWithStackTrace(error, stackTrace);
     } catch (error, stackTrace) {

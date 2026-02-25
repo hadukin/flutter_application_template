@@ -1,7 +1,6 @@
 import 'package:app_links/app_links.dart';
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter_application_template/router/auto_router_impl/app_router.dart';
 import 'package:flutter_application_template/router/go_router_impl/go_router.dart';
 import 'package:flutter_application_template/services/snack_bar_service/snack_bar_service.dart';
 import 'package:flutter_application_template/services/snack_bar_service/snack_bar_service_impl.dart';

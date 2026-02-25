@@ -13,6 +13,7 @@ workspace:
   - packages/network
   - packages/storage
   - packages/data
+  - packages/use_case
 
 dependencies:
   flutter:

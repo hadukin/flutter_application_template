@@ -6,7 +6,7 @@ import 'package:domain/domain.dart';
 class AnalyticsDiModule implements BaseDiModule {
   @override
   Future<void> register(Di instance) async {
-    instance.registerSingleton<AnalyticsService>(AnalyticsServiceImpl(
+    instance.registerLazySingleton<AnalyticsService>(AnalyticsServiceImpl(
       providers: [DebugAnalyticProvider()],
     ));
   }

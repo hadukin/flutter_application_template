@@ -42,8 +42,7 @@ abstract base class UseCase<Type, Params> {
     try {
       final result = await func.call();
       return UseCaseSuccess<Type, Exception>(result);
-    } catch (error, stackTrace) {
-      Log.i.error('${error}', error: error, stackTrace: stackTrace);
+    } catch (error) {
       return UseCaseFailure<Type, Exception>(Exception(error));
     }
   }
@@ -83,15 +82,15 @@ abstract base class StreamUseCase<Type, Params> {
 
   Future<void> cancel();
 
-  // @protected
-  // Stream<UseCaseResult<Type, Exception>> innerCall(Future<Type> Function() func) async* {
-  //   try {
-  //     final result = await func.call();
-  //     yield UseCaseSuccess<Type, Exception>(result);
-  //   } catch (e) {
-  //     yield UseCaseFailure<Type, Exception>(e as Exception);
-  //   }
-  // }
+  @protected
+  Stream<UseCaseResult<Type, Exception>> innerCall(Future<Type> Function() func) async* {
+    try {
+      final result = await func.call();
+      yield UseCaseSuccess<Type, Exception>(result);
+    } catch (e) {
+      yield UseCaseFailure<Type, Exception>(e as Exception);
+    }
+  }
 }
 
 abstract base class SyncUseCase<Type, Params> {
@@ -102,8 +101,7 @@ abstract base class SyncUseCase<Type, Params> {
     try {
       final result = func.call();
       return UseCaseSuccess<Type, Exception>(result);
-    } catch (error, stackTrace) {
-      Log.i.error('${error}', error: error, stackTrace: stackTrace);
+    } catch (error) {
       return UseCaseFailure<Type, Exception>(Exception(error));
     }
   }

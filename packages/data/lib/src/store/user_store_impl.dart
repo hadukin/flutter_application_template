@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-final class UserStore extends BaseNullableStore<UserEntity> {
+final class UserStoreImpl extends UserStore {
   @override
   UserEntity? get initialValue => null;
 }
