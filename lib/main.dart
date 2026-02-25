@@ -13,9 +13,8 @@ Future<void> main() async {
       WidgetsFlutterBinding.ensureInitialized();
       await EasyLocalization.ensureInitialized();
       await TaskWorker.instance.init();
-      await Application.instance.registerDependencies();
+      await Di.instance.ensureInitialized();
       await Di.instance.registerModule(UiDiModule());
-
       final router = Di.instance.getIt<Graph>();
 
       /// Example router listener

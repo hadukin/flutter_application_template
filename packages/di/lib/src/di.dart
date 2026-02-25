@@ -1,6 +1,10 @@
 import 'dart:async';
 
+import 'package:data/data.dart';
+import 'package:di/di.dart';
 import 'package:get_it/get_it.dart';
+import 'package:network/network.dart';
+import 'package:storage/storage.dart';
 
 part 'di_impl.dart';
 
@@ -10,6 +14,10 @@ abstract final class Di {
   Di._();
 
   static Di get instance => _instance;
+
+  /// It must be called at the start of the application.
+  /// Implements the registration of all dependencies.
+  Future<void> ensureInitialized();
 
   void registerSingleton<T extends Object>(T instance, {String? instanceName});
 

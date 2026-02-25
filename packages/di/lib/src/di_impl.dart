@@ -1,7 +1,16 @@
 part of 'di.dart';
 
+final _getIt = GetIt.instance;
+
 final class _DiImpl implements Di {
-  final _getIt = GetIt.instance;
+  @override
+  Future<void> ensureInitialized() async {
+    final modules = [const StorageDiModule(), const NetworkDiModule(), const DataDiModule()];
+
+    for (final module in modules) {
+      await registerModule(module);
+    }
+  }
 
   @override
   T getIt<T extends Object>({String? instanceName, param1, param2}) {

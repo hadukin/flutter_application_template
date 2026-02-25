@@ -7,7 +7,7 @@ final class TokenStore {
 
   Stream<Tokens> get observe => _subject.stream.distinct();
 
-  Tokens get value => _subject.value;
+  Tokens get value => _subject.valueOrNull;
 
   void setValue(Tokens value) {
     _subject.add(value);

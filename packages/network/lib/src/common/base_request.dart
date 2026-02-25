@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:network/src/common/request_method.dart';
 
 abstract interface class BaseRequest {
@@ -11,8 +10,6 @@ abstract interface class BaseRequest {
   Map<String, dynamic>? get data;
 
   Map<String, String>? get headers;
-
-  FormData? get formData;
 
   RequestMethod get method;
 }
