@@ -31,3 +31,5 @@ export 'src/common/logger_impl.dart';
 export 'src/common/use_case_base.dart';
 
 export 'src/store/interfaces/user_store.dart';
+
+export './src/di/domain_id_module.module.dart';

@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:data/data.dart';
 import 'package:di/di.dart';
 import 'package:get_it/get_it.dart';
+import 'package:domain/domain.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:network/network.dart';
 import 'package:storage/storage.dart';
 import 'package:injectable/injectable.dart';
@@ -20,6 +23,7 @@ abstract final class Di {
   /// It must be called at the start of the application.
   /// Implements the registration of all dependencies.
   Future<void> ensureInitialized();
+  Future<void> registerDependencies();
 
   void registerSingleton<T extends Object>(T instance, {String? instanceName});
 
@@ -41,11 +45,3 @@ abstract final class Di {
     dynamic param2,
   });
 }
-
-final getIt = GetIt.instance;
-
-@InjectableInit(initializerName: 'init', preferRelativeImports: true, asExtension: true, externalPackageModulesAfter: [
-  ExternalModule(StoragePackageModule),
-  ExternalModule(DataPackageModule),
-])
-Future<void> configureDependencies() => _getIt.init();

@@ -1,5 +1,7 @@
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class DebugAnalyticProvider implements AnalyticsProvider {
   @override
   Future<void> init() async {

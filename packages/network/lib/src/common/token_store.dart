@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/subjects.dart';
 
 typedef Tokens = ({String? access, String? refresh})?;
 
+@Singleton()
 final class TokenStore {
   final _subject = BehaviorSubject<Tokens>()..asBroadcastStream();
 

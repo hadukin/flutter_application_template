@@ -7,6 +7,8 @@
 import 'dart:async' as _i687;
 
 import 'package:data/src/analytics/analytics_service_impl.dart' as _i108;
+import 'package:data/src/analytics/debug_analytic_provider.dart' as _i1047;
+import 'package:data/src/analytics/di/analytics_di_module.dart' as _i915;
 import 'package:data/src/authorization/data_source/local/authorization_local_data_source.dart'
     as _i601;
 import 'package:data/src/authorization/data_source/local/authorization_local_data_source_impl.dart'
@@ -32,6 +34,11 @@ class DataPackageModule extends _i526.MicroPackageModule {
 // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
+    final analyticsModule = _$AnalyticsModule();
+    gh.factory<_i1047.DebugAnalyticProvider>(
+        () => _i1047.DebugAnalyticProvider());
+    gh.factory<List<_i494.AnalyticsProvider>>(
+        () => analyticsModule.analyticsProviders);
     gh.singleton<_i63.UserStore>(() => _i63.UserStore());
     gh.singleton<_i781.TodoLocalDataSource>(
         () => _i303.TodoLocalDataSourceImpl(db: gh<_i431.Database>()));
@@ -53,3 +60,5 @@ class DataPackageModule extends _i526.MicroPackageModule {
         todoLocalDataSource: gh<_i781.TodoLocalDataSource>()));
   }
 }
+
+class _$AnalyticsModule extends _i915.AnalyticsModule {}

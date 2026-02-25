@@ -2,6 +2,7 @@ import 'package:data/src/analytics/analytics_service_impl.dart';
 import 'package:data/src/analytics/debug_analytic_provider.dart';
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
 class AnalyticsDiModule implements BaseDiModule {
   @override
@@ -10,4 +11,10 @@ class AnalyticsDiModule implements BaseDiModule {
       providers: [DebugAnalyticProvider()],
     ));
   }
+}
+
+@module
+abstract class AnalyticsModule {
+  @injectable
+  List<AnalyticsProvider> analyticsProviders = [DebugAnalyticProvider()];
 }

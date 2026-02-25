@@ -1,5 +1,7 @@
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: TodoUseCases)
 final class TodoUseCasesImpl implements TodoUseCases {
   final TodoRepository _todoRepository;
 

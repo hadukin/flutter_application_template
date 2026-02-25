@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:network/src/api/auth/authorization_api.dart';
 import 'package:network/src/api/auth/dto/user_dto.dart';
 import 'package:network/src/api/auth/request/sign_in_request.dart';
 import 'package:network/src/client/dio_client/client_provider.dart';
 
+@Singleton(as: AuthApi)
 final class AuthApiImpl implements AuthApi {
   final ClientProvider _client;
 

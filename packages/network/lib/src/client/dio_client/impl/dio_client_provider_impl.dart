@@ -1,17 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:network/network.dart';
+import 'package:network/src/client/dio_client/client_provider.dart';
 import 'package:network/src/common/base_request.dart';
 import 'package:network/src/client/dio_client/impl/base_dio_client_provider.dart';
 import 'package:network/src/common/base_response.dart';
+import 'package:network/src/common/network_config.dart';
 
+@Singleton(as: ClientProvider)
 final class DioClientProviderImpl extends BaseDioClientProvider {
-  final Dio _dio;
   final TokenStore _tokenStore;
+  late final Dio _dio;
 
   DioClientProviderImpl({
-    required Dio dio,
     required TokenStore tokenStore,
-  })  : _dio = dio,
+  })  : _dio = Dio(BaseOptions(baseUrl: NetworkConfig.baseUrl)),
         _tokenStore = tokenStore;
 
   @override

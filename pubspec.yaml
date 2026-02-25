@@ -32,6 +32,7 @@ dependencies:
   intl_utils: ^2.8.12
   app_links: ^7.0.0
   easy_localization: ^3.0.8
+  injectable: ^2.7.1+4
 
   di:
     path: packages/di
@@ -49,6 +50,7 @@ dev_dependencies:
   melos: ^7.3.0
   flutter_launcher_icons: ^0.14.4
   flutter_gen_runner: ^5.12.0
+  injectable_generator: ^2.12.0
 
 flutter:
   uses-material-design: true

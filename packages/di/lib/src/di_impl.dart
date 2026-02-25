@@ -49,4 +49,16 @@ final class _DiImpl implements Di {
   bool isRegistered<T extends Object>({Object? instance, String? instanceName}) {
     return _getIt.isRegistered(instance: instance, instanceName: instanceName);
   }
+
+  @override
+  Future<void> registerDependencies() => configureDependencies();
 }
+
+@InjectableInit(initializerName: 'init', preferRelativeImports: true, asExtension: true, externalPackageModulesBefore: [
+  ExternalModule(StoragePackageModule),
+], externalPackageModulesAfter: [
+  ExternalModule(NetworkPackageModule),
+  ExternalModule(DataPackageModule),
+  ExternalModule(DomainPackageModule)
+])
+Future<void> configureDependencies() => _getIt.init();
