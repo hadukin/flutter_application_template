@@ -30,5 +30,5 @@ abstract base class INavigator<D> with RouterQueryBuilderMixin {
 
   final controller = StreamController<D>();
 
-  Stream<D> get state => controller.stream;
+  Stream<D> get state => controller.stream.asBroadcastStream();
 }

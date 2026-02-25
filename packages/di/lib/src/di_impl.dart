@@ -51,7 +51,7 @@ final class _DiImpl implements Di {
   }
 
   @override
-  Future<void> registerDependencies() => configureDependencies();
+  Future<void> registerDependencies() => _registerDependencies();
 }
 
 @InjectableInit(initializerName: 'init', preferRelativeImports: true, asExtension: true, externalPackageModulesBefore: [
@@ -61,4 +61,4 @@ final class _DiImpl implements Di {
   ExternalModule(DataPackageModule),
   ExternalModule(DomainPackageModule)
 ])
-Future<void> configureDependencies() => _getIt.init();
+Future<void> _registerDependencies() => _getIt.init();
