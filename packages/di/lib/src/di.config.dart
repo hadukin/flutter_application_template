@@ -15,6 +15,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:network/network.dart' as _i372;
 import 'package:storage/storage.dart' as _i431;
+import 'package:use_case/use_case.dart' as _i987;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,6 +32,7 @@ extension GetItInjectableX on _i174.GetIt {
     await _i372.NetworkPackageModule().init(gh);
     await _i437.DataPackageModule().init(gh);
     await _i494.DomainPackageModule().init(gh);
+    await _i987.UseCasePackageModule().init(gh);
     return this;
   }
 }

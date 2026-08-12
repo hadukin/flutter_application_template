@@ -4,15 +4,6 @@ final _getIt = GetIt.instance;
 
 final class _DiImpl implements Di {
   @override
-  Future<void> ensureInitialized() async {
-    final modules = [const StorageDiModule(), const NetworkDiModule(), const DataDiModule()];
-
-    for (final module in modules) {
-      await registerModule(module);
-    }
-  }
-
-  @override
   T getIt<T extends Object>({String? instanceName, param1, param2}) {
     return _getIt.get<T>();
   }
@@ -59,6 +50,7 @@ final class _DiImpl implements Di {
 ], externalPackageModulesAfter: [
   ExternalModule(NetworkPackageModule),
   ExternalModule(DataPackageModule),
-  ExternalModule(DomainPackageModule)
+  ExternalModule(DomainPackageModule),
+  ExternalModule(UseCasePackageModule),
 ])
 Future<void> _registerDependencies() => _getIt.init();

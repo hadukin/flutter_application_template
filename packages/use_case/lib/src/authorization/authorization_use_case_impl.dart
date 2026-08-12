@@ -1,5 +1,7 @@
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: AuthorizationUseCase)
 class AuthorizationUseCaseImpl implements AuthorizationUseCase {
   final AuthorizationRepository _repository;
 

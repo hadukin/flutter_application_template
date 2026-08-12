@@ -13,11 +13,7 @@ class TabsRootView extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: AutoTabsScaffold(
-        routes: const [
-          TabHomeRoute(),
-          TabTodoRoute(),
-          TabProfileRoute(),
-        ],
+        routes: const [TabHomeRoute(), TabTodoRoute(), TabProfileRoute()],
         bottomNavigationBuilder: (_, tabsRouter) {
           return CupertinoTabBar(
             onTap: (index) {
@@ -30,10 +26,7 @@ class TabsRootView extends StatelessWidget {
             },
             currentIndex: tabsRouter.activeIndex,
             items: const [
-              BottomNavigationBarItem(
-                activeIcon: Icon(CupertinoIcons.home),
-                icon: Icon(CupertinoIcons.home),
-              ),
+              BottomNavigationBarItem(activeIcon: Icon(CupertinoIcons.home), icon: Icon(CupertinoIcons.home)),
               BottomNavigationBarItem(
                 activeIcon: Icon(CupertinoIcons.list_bullet),
                 icon: Icon(CupertinoIcons.list_bullet),

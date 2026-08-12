@@ -19,7 +19,7 @@ import 'package:data/src/authorization/data_source/remote/authorization_remote_d
     as _i69;
 import 'package:data/src/authorization/repository/authorization_repository_impl.dart'
     as _i729;
-import 'package:data/src/store/user_store.dart' as _i63;
+import 'package:data/src/store/user_store_impl.dart' as _i1033;
 import 'package:data/src/todo/data_source/local/todo_local_data_source.dart'
     as _i781;
 import 'package:data/src/todo/data_source/local/todo_local_data_source_impl.dart'
@@ -39,11 +39,11 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i1047.DebugAnalyticProvider());
     gh.factory<List<_i494.AnalyticsProvider>>(
         () => analyticsModule.analyticsProviders);
-    gh.singleton<_i63.UserStore>(() => _i63.UserStore());
     gh.singleton<_i781.TodoLocalDataSource>(
         () => _i303.TodoLocalDataSourceImpl(db: gh<_i431.Database>()));
     gh.singleton<_i747.AuthorizationRemoteDataSource>(
         () => _i69.AuthorizationRemoteDataSourceImpl(api: gh<_i372.AuthApi>()));
+    gh.singleton<_i494.UserStore>(() => _i1033.UserStoreImpl());
     gh.singleton<_i601.AuthorizationLocalDataSource>(() =>
         _i44.AuthorizationLocalDataSourceImpl(
             secureStorage: gh<_i431.SecureStorage>()));

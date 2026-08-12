@@ -24,9 +24,7 @@ class _TodoViewState extends State<TodoView> {
       child: BlocBuilder<TodoBloc, TodoState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Todo'),
-            ),
+            appBar: AppBar(title: const Text('Todo')),
             body: Column(
               children: [
                 Padding(
@@ -45,9 +43,7 @@ class _TodoViewState extends State<TodoView> {
                           itemBuilder: (context, index) {
                             final todo = state.todos[index];
 
-                            return ListTile(
-                              title: Text(todo.title),
-                            );
+                            return ListTile(title: Text(todo.title));
                           },
                         ),
                 ),
