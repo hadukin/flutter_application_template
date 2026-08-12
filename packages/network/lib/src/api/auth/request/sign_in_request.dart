@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:network/src/common/base_request.dart';
 import 'package:network/src/common/request_method.dart';
@@ -17,9 +16,6 @@ final class SignInRequest implements BaseRequest {
 
   @override
   Map<String, dynamic>? get data => _$SignInRequestToJson(this);
-
-  @override
-  FormData? get formData => null;
 
   @override
   Map<String, dynamic>? get queryParameters => null;
