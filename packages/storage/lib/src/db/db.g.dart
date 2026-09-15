@@ -9,35 +9,51 @@ class $TodoTableTable extends TodoTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $TodoTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _localIdMeta =
-      const VerificationMeta('localId');
+  static const VerificationMeta _localIdMeta = const VerificationMeta(
+    'localId',
+  );
   @override
   late final GeneratedColumn<String> localId = GeneratedColumn<String>(
-      'local_id', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: false,
-      clientDefault: () => const Uuid().v4());
-  static const VerificationMeta _createAtMeta =
-      const VerificationMeta('createAt');
+    'local_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: () => const Uuid().v4(),
+  );
+  static const VerificationMeta _createAtMeta = const VerificationMeta(
+    'createAt',
+  );
   @override
   late final GeneratedColumn<DateTime> createAt = GeneratedColumn<DateTime>(
-      'create_at', aliasedName, false,
-      type: DriftSqlType.dateTime,
-      requiredDuringInsert: false,
-      clientDefault: DateTime.now);
-  static const VerificationMeta _updateAtMeta =
-      const VerificationMeta('updateAt');
+    'create_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: DateTime.now,
+  );
+  static const VerificationMeta _updateAtMeta = const VerificationMeta(
+    'updateAt',
+  );
   @override
   late final GeneratedColumn<DateTime> updateAt = GeneratedColumn<DateTime>(
-      'update_at', aliasedName, false,
-      type: DriftSqlType.dateTime,
-      requiredDuringInsert: false,
-      clientDefault: DateTime.now);
+    'update_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    clientDefault: DateTime.now,
+  );
   static const VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
   late final GeneratedColumn<String> title = GeneratedColumn<String>(
-      'title', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [localId, createAt, updateAt, title];
   @override
@@ -46,25 +62,35 @@ class $TodoTableTable extends TodoTable
   String get actualTableName => $name;
   static const String $name = 'todo_table';
   @override
-  VerificationContext validateIntegrity(Insertable<TodoDatabase> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<TodoDatabase> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('local_id')) {
-      context.handle(_localIdMeta,
-          localId.isAcceptableOrUnknown(data['local_id']!, _localIdMeta));
+      context.handle(
+        _localIdMeta,
+        localId.isAcceptableOrUnknown(data['local_id']!, _localIdMeta),
+      );
     }
     if (data.containsKey('create_at')) {
-      context.handle(_createAtMeta,
-          createAt.isAcceptableOrUnknown(data['create_at']!, _createAtMeta));
+      context.handle(
+        _createAtMeta,
+        createAt.isAcceptableOrUnknown(data['create_at']!, _createAtMeta),
+      );
     }
     if (data.containsKey('update_at')) {
-      context.handle(_updateAtMeta,
-          updateAt.isAcceptableOrUnknown(data['update_at']!, _updateAtMeta));
+      context.handle(
+        _updateAtMeta,
+        updateAt.isAcceptableOrUnknown(data['update_at']!, _updateAtMeta),
+      );
     }
     if (data.containsKey('title')) {
       context.handle(
-          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
     } else if (isInserting) {
       context.missing(_titleMeta);
     }
@@ -77,14 +103,22 @@ class $TodoTableTable extends TodoTable
   TodoDatabase map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return TodoDatabase(
-      localId: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}local_id'])!,
-      createAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}create_at'])!,
-      updateAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}update_at'])!,
-      title: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      localId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}local_id'],
+      )!,
+      createAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}create_at'],
+      )!,
+      updateAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}update_at'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
     );
   }
 
@@ -99,11 +133,12 @@ class TodoDatabase extends DataClass implements Insertable<TodoDatabase> {
   final DateTime createAt;
   final DateTime updateAt;
   final String title;
-  const TodoDatabase(
-      {required this.localId,
-      required this.createAt,
-      required this.updateAt,
-      required this.title});
+  const TodoDatabase({
+    required this.localId,
+    required this.createAt,
+    required this.updateAt,
+    required this.title,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -123,8 +158,10 @@ class TodoDatabase extends DataClass implements Insertable<TodoDatabase> {
     );
   }
 
-  factory TodoDatabase.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory TodoDatabase.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return TodoDatabase(
       localId: serializer.fromJson<String>(json['localId']),
@@ -144,17 +181,17 @@ class TodoDatabase extends DataClass implements Insertable<TodoDatabase> {
     };
   }
 
-  TodoDatabase copyWith(
-          {String? localId,
-          DateTime? createAt,
-          DateTime? updateAt,
-          String? title}) =>
-      TodoDatabase(
-        localId: localId ?? this.localId,
-        createAt: createAt ?? this.createAt,
-        updateAt: updateAt ?? this.updateAt,
-        title: title ?? this.title,
-      );
+  TodoDatabase copyWith({
+    String? localId,
+    DateTime? createAt,
+    DateTime? updateAt,
+    String? title,
+  }) => TodoDatabase(
+    localId: localId ?? this.localId,
+    createAt: createAt ?? this.createAt,
+    updateAt: updateAt ?? this.updateAt,
+    title: title ?? this.title,
+  );
   TodoDatabase copyWithCompanion(TodoTableCompanion data) {
     return TodoDatabase(
       localId: data.localId.present ? data.localId.value : this.localId,
@@ -223,12 +260,13 @@ class TodoTableCompanion extends UpdateCompanion<TodoDatabase> {
     });
   }
 
-  TodoTableCompanion copyWith(
-      {Value<String>? localId,
-      Value<DateTime>? createAt,
-      Value<DateTime>? updateAt,
-      Value<String>? title,
-      Value<int>? rowid}) {
+  TodoTableCompanion copyWith({
+    Value<String>? localId,
+    Value<DateTime>? createAt,
+    Value<DateTime>? updateAt,
+    Value<String>? title,
+    Value<int>? rowid,
+  }) {
     return TodoTableCompanion(
       localId: localId ?? this.localId,
       createAt: createAt ?? this.createAt,
@@ -308,16 +346,24 @@ class $$TodoTableTableFilterComposer extends Composer<_$Db, $TodoTableTable> {
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<String> get localId => $composableBuilder(
-      column: $table.localId, builder: (column) => ColumnFilters(column));
+    column: $table.localId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get createAt => $composableBuilder(
-      column: $table.createAt, builder: (column) => ColumnFilters(column));
+    column: $table.createAt,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get updateAt => $composableBuilder(
-      column: $table.updateAt, builder: (column) => ColumnFilters(column));
+    column: $table.updateAt,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get title => $composableBuilder(
-      column: $table.title, builder: (column) => ColumnFilters(column));
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$TodoTableTableOrderingComposer extends Composer<_$Db, $TodoTableTable> {
@@ -329,16 +375,24 @@ class $$TodoTableTableOrderingComposer extends Composer<_$Db, $TodoTableTable> {
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<String> get localId => $composableBuilder(
-      column: $table.localId, builder: (column) => ColumnOrderings(column));
+    column: $table.localId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get createAt => $composableBuilder(
-      column: $table.createAt, builder: (column) => ColumnOrderings(column));
+    column: $table.createAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get updateAt => $composableBuilder(
-      column: $table.updateAt, builder: (column) => ColumnOrderings(column));
+    column: $table.updateAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get title => $composableBuilder(
-      column: $table.title, builder: (column) => ColumnOrderings(column));
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$TodoTableTableAnnotationComposer
@@ -363,20 +417,24 @@ class $$TodoTableTableAnnotationComposer
       $composableBuilder(column: $table.title, builder: (column) => column);
 }
 
-class $$TodoTableTableTableManager extends RootTableManager<
-    _$Db,
-    $TodoTableTable,
-    TodoDatabase,
-    $$TodoTableTableFilterComposer,
-    $$TodoTableTableOrderingComposer,
-    $$TodoTableTableAnnotationComposer,
-    $$TodoTableTableCreateCompanionBuilder,
-    $$TodoTableTableUpdateCompanionBuilder,
-    (TodoDatabase, BaseReferences<_$Db, $TodoTableTable, TodoDatabase>),
-    TodoDatabase,
-    PrefetchHooks Function()> {
+class $$TodoTableTableTableManager
+    extends
+        RootTableManager<
+          _$Db,
+          $TodoTableTable,
+          TodoDatabase,
+          $$TodoTableTableFilterComposer,
+          $$TodoTableTableOrderingComposer,
+          $$TodoTableTableAnnotationComposer,
+          $$TodoTableTableCreateCompanionBuilder,
+          $$TodoTableTableUpdateCompanionBuilder,
+          (TodoDatabase, BaseReferences<_$Db, $TodoTableTable, TodoDatabase>),
+          TodoDatabase,
+          PrefetchHooks Function()
+        > {
   $$TodoTableTableTableManager(_$Db db, $TodoTableTable table)
-      : super(TableManagerState(
+    : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -385,53 +443,65 @@ class $$TodoTableTableTableManager extends RootTableManager<
               $$TodoTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$TodoTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<String> localId = const Value.absent(),
-            Value<DateTime> createAt = const Value.absent(),
-            Value<DateTime> updateAt = const Value.absent(),
-            Value<String> title = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              TodoTableCompanion(
-            localId: localId,
-            createAt: createAt,
-            updateAt: updateAt,
-            title: title,
-            rowid: rowid,
-          ),
-          createCompanionCallback: ({
-            Value<String> localId = const Value.absent(),
-            Value<DateTime> createAt = const Value.absent(),
-            Value<DateTime> updateAt = const Value.absent(),
-            required String title,
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              TodoTableCompanion.insert(
-            localId: localId,
-            createAt: createAt,
-            updateAt: updateAt,
-            title: title,
-            rowid: rowid,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<DateTime> createAt = const Value.absent(),
+                Value<DateTime> updateAt = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => TodoTableCompanion(
+                localId: localId,
+                createAt: createAt,
+                updateAt: updateAt,
+                title: title,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<DateTime> createAt = const Value.absent(),
+                Value<DateTime> updateAt = const Value.absent(),
+                required String title,
+                Value<int> rowid = const Value.absent(),
+              }) => TodoTableCompanion.insert(
+                localId: localId,
+                createAt: createAt,
+                updateAt: updateAt,
+                title: title,
+                rowid: rowid,
+              ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$TodoTableTable, TodoDatabase>(table),
+                  BaseReferences<_$Db, $TodoTableTable, TodoDatabase>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$TodoTableTableProcessedTableManager = ProcessedTableManager<
-    _$Db,
-    $TodoTableTable,
-    TodoDatabase,
-    $$TodoTableTableFilterComposer,
-    $$TodoTableTableOrderingComposer,
-    $$TodoTableTableAnnotationComposer,
-    $$TodoTableTableCreateCompanionBuilder,
-    $$TodoTableTableUpdateCompanionBuilder,
-    (TodoDatabase, BaseReferences<_$Db, $TodoTableTable, TodoDatabase>),
-    TodoDatabase,
-    PrefetchHooks Function()>;
+typedef $$TodoTableTableProcessedTableManager =
+    ProcessedTableManager<
+      _$Db,
+      $TodoTableTable,
+      TodoDatabase,
+      $$TodoTableTableFilterComposer,
+      $$TodoTableTableOrderingComposer,
+      $$TodoTableTableAnnotationComposer,
+      $$TodoTableTableCreateCompanionBuilder,
+      $$TodoTableTableUpdateCompanionBuilder,
+      (TodoDatabase, BaseReferences<_$Db, $TodoTableTable, TodoDatabase>),
+      TodoDatabase,
+      PrefetchHooks Function()
+    >;
 
 class $DbManager {
   final _$Db _db;

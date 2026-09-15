@@ -4,7 +4,7 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
+  sdk: ^3.13.2
   flutter: ">=1.17.0"
 
 resolution: workspace
@@ -13,9 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_secure_storage: ^9.2.4
-  shared_preferences: ^2.5.3
-  drift: ^2.29.0
-  drift_flutter: ^0.2.7
+  shared_preferences: ^2.5.5
+  drift: ^2.35.0
+  drift_flutter: ^0.3.1
   uuid: ^4.5.1
   rxdart: ^0.28.0
   di:
@@ -25,5 +25,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  drift_dev: ^2.26.0
-  build_runner: ^2.4.15
+  drift_dev: ^2.35.0
+  build_runner: ^2.16.1

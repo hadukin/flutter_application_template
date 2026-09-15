@@ -27,6 +27,8 @@ class AuthorizationDiModule implements BaseDiModule {
       ),
     );
 
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(repository: instance.getIt()));
+    instance.registerFactory<LogoutUseCase>(() => LogoutUseCase(repository: instance.getIt()));
     instance.registerLazySingleton<AuthorizationUseCase>(AuthorizationUseCaseImpl(repository: instance.getIt()));
   }
 }

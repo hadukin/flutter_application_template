@@ -12,6 +12,8 @@ export 'src/todo/repository/todo_repository.dart';
 // Use case
 export 'src/todo/use_case/todo_use_cases.dart';
 export 'src/authorization/use_case/authorization_use_cases.dart';
+export 'src/authorization/use_case/login_use_case.dart';
+export 'src/authorization/use_case/logout_use_case.dart';
 
 // Entity
 export 'src/authorization/entity/index.dart';
@@ -28,6 +30,6 @@ export 'src/router/i_router_builder.dart';
 export 'src/router/router_details.dart';
 export 'src/common/task_worker.dart';
 export 'src/common/logger_impl.dart';
-export 'src/common/use_case_base.dart';
+export 'src/common/use_case.dart';
 
 export 'src/store/interfaces/user_store.dart';

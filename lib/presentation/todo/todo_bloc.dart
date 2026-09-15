@@ -3,13 +3,8 @@ import 'package:domain/domain.dart';
 import 'package:flutter_application_template/presentation/todo/todo_event.dart';
 import 'package:flutter_application_template/presentation/todo/todo_state.dart';
 
-class TodoBloc extends Bloc<TodoEvent, TodoState> {
-  final TodoUseCases _todoUseCases;
-
-  TodoBloc({
-    required TodoUseCases todoUseCases,
-  })  : _todoUseCases = todoUseCases,
-        super(TodoState()) {
+class TodoBloc({required final TodoUseCases _todoUseCases}) extends Bloc<TodoEvent, TodoState> {
+  this : super(TodoState()) {
     on<TodoEvent>(
       (event, emit) => switch (event) {
         final TodoAddEvent event => _onAdd(event, emit),
@@ -19,10 +14,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     add(TodoGetAllEvent());
   }
 
-  Future<void> _onAdd(
-    TodoAddEvent event,
-    Emitter<TodoState> emit,
-  ) async {
+  Future<void> _onAdd(TodoAddEvent event, Emitter<TodoState> emit) async {
     final newTodo = await _todoUseCases.add(event.title);
     emit(state.copyWith(todos: [...state.todos, newTodo]));
   }

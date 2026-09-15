@@ -9,29 +9,25 @@ part 'launch_state.dart';
 
 part 'launch_view_model.freezed.dart';
 
-class LaunchViewModel extends Cubit<LaunchState> {
-  final AuthorizationUseCase _authorizationUseCase;
-  final Graph _router;
-  final SnackBarService _snackBarService;
-
-  LaunchViewModel({
-    required Graph router,
-    required SnackBarService snackBarService,
-    required AuthorizationUseCase authorizationUseCase,
-  }) : _router = router,
-       _snackBarService = snackBarService,
-       _authorizationUseCase = authorizationUseCase,
-       super(LaunchState());
+class LaunchViewModel({
+  required final LoginUseCase _loginUseCase,
+  required final Graph _router,
+  required final SnackBarService _snackBarService,
+}) extends Cubit<LaunchState> {
+  this : super(LaunchState());
 
   Future<void> signIn() async {
     emit(state.copyWith(isLoading: true));
-    try {
-      final result = await _authorizationUseCase.signIn(email: 'test@test.com', password: '12345678');
-      emit(state.copyWith(isLoading: false, user: result));
-      _router.navigator.navigate('/home');
-    } catch (e) {
+
+    final (:data, :err) = await _loginUseCase(LoginUseCaseParam('test@test.com', '12345678'));
+
+    if (err != null) {
       emit(state.copyWith(isLoading: false));
-      _snackBarService.showSnackBar(message: '$e');
+      _snackBarService.showSnackBar(message: '$err');
+      return;
     }
+
+    emit(state.copyWith(isLoading: false, user: data));
+    _router.navigator.navigate('/home');
   }
 }

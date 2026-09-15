@@ -25,9 +25,9 @@ class _LaunchViewState extends State<LaunchView> {
     return BlocProvider(
       create: (context) {
         return LaunchViewModel(
+          loginUseCase: Di.instance.getIt(),
           router: Di.instance.getIt(),
           snackBarService: Di.instance.getIt(),
-          authorizationUseCase: Di.instance.getIt(),
         );
       },
       child: BlocBuilder<LaunchViewModel, LaunchState>(

@@ -86,11 +86,10 @@ class ProfileDetailsRoute extends PageRouteInfo<ProfileDetailsRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final queryParams = data.queryParams;
       final args = data.argsAs<ProfileDetailsRouteArgs>(
-        orElse:
-            () => ProfileDetailsRouteArgs(
-              userId: pathParams.optString('userId'),
-              userName: queryParams.optString('userName'),
-            ),
+        orElse: () => ProfileDetailsRouteArgs(
+          userId: pathParams.optString('userId'),
+          userName: queryParams.optString('userName'),
+        ),
       );
       return ProfileDetailsView(
         key: args.key,
@@ -114,6 +113,18 @@ class ProfileDetailsRouteArgs {
   String toString() {
     return 'ProfileDetailsRouteArgs{key: $key, userId: $userId, userName: $userName}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProfileDetailsRouteArgs) return false;
+    return key == other.key &&
+        userId == other.userId &&
+        userName == other.userName;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ userId.hashCode ^ userName.hashCode;
 }
 
 /// generated route for

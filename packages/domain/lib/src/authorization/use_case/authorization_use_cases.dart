@@ -5,10 +5,7 @@ abstract interface class AuthorizationUseCase {
 
   Future<({String? access, String? refresh})?> getTokens();
 
-  Future<UserEntity> signIn({
-    required String email,
-    required String password,
-  });
+  Future<UserEntity> signIn({required String email, required String password});
 
   Future<void> signOut();
 

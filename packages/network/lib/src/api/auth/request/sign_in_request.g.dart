@@ -13,7 +13,4 @@ SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SignInRequestToJson(SignInRequest instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-    };
+    <String, dynamic>{'email': instance.email, 'password': instance.password};

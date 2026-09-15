@@ -22,6 +22,7 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // Добавляем токен в заголовки для всех запросов, кроме запроса на обновление токена
     if (options.path != '/v1/internal/refresh' &&
+        options.path != '/v1/internal/sign_up' &&
         _tokenManager.tokens?.access != null &&
         _tokenManager.tokens?.access?.length != 0) {
       options.headers['Authorization'] = 'Bearer ${_tokenManager.tokens?.access}';

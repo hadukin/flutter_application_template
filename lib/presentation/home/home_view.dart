@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:di/di.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_template/ui_di_module.dart';
 

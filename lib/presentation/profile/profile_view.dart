@@ -60,7 +60,10 @@ class ProfileView extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          await Di.instance.getIt<AuthorizationUseCase>().signOut();
+                          // await Di.instance.getIt<AuthorizationUseCase>().signOut();
+                          final logoutUseCase = Di.instance.getIt<LogoutUseCase>();
+                          await logoutUseCase(EmptyUseCaseParam());
+
                           Di.instance.getIt<Graph>().navigator.navigate('/launch');
                         },
                         child: const Text('Logout'),
