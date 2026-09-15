@@ -12,3 +12,15 @@ abstract class UserMapper {
     );
   }
 }
+
+extension UserDtoExtension on UserDto {
+  UserEntity toEntity() {
+    return UserEntity(
+      email: id,
+      credentials: (
+        access: accessToken,
+        refresh: refreshToken,
+      ),
+    );
+  }
+}

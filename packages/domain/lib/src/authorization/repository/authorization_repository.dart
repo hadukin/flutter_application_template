@@ -8,7 +8,7 @@ abstract interface class AuthorizationRepository {
 
   Future<void> signOut();
 
-  Future<TokensEntity> getTokens();
+  Future<({String? access, String? refresh})?> getTokens();
 
   Future<void> createTest();
 }

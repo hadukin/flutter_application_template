@@ -15,14 +15,13 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserEntity {
   String get email;
-  TokensEntity get credentials;
+  ({String? access, String? refresh})? get credentials;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<UserEntity> get copyWith =>
-      _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
+  $UserEntityCopyWith<UserEntity> get copyWith => _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
 
   @override
   bool operator ==(Object other) {
@@ -30,8 +29,7 @@ mixin _$UserEntity {
         (other.runtimeType == runtimeType &&
             other is UserEntity &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
+            (identical(other.credentials, credentials) || other.credentials == credentials));
   }
 
   @override
@@ -45,11 +43,9 @@ mixin _$UserEntity {
 
 /// @nodoc
 abstract mixin class $UserEntityCopyWith<$Res> {
-  factory $UserEntityCopyWith(
-          UserEntity value, $Res Function(UserEntity) _then) =
-      _$UserEntityCopyWithImpl;
+  factory $UserEntityCopyWith(UserEntity value, $Res Function(UserEntity) _then) = _$UserEntityCopyWithImpl;
   @useResult
-  $Res call({String email, TokensEntity credentials});
+  $Res call({String email, ({String? access, String? refresh})? credentials});
 }
 
 /// @nodoc
@@ -75,7 +71,7 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
       credentials: freezed == credentials
           ? _self.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
-              as TokensEntity,
+              as ({String? access, String? refresh})?,
     ));
   }
 }
@@ -173,7 +169,7 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, TokensEntity credentials)? $default, {
+    TResult Function(String email, ({String? access, String? refresh})? credentials)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -200,7 +196,7 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, TokensEntity credentials) $default,
+    TResult Function(String email, ({String? access, String? refresh})? credentials) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -225,7 +221,7 @@ extension UserEntityPatterns on UserEntity {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, TokensEntity credentials)? $default,
+    TResult? Function(String email, ({String? access, String? refresh})? credentials)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -245,15 +241,14 @@ class _UserEntity implements UserEntity {
   @override
   final String email;
   @override
-  final TokensEntity credentials;
+  final ({String? access, String? refresh})? credentials;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$UserEntityCopyWith<_UserEntity> get copyWith =>
-      __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
+  _$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
@@ -261,8 +256,7 @@ class _UserEntity implements UserEntity {
         (other.runtimeType == runtimeType &&
             other is _UserEntity &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
+            (identical(other.credentials, credentials) || other.credentials == credentials));
   }
 
   @override
@@ -275,14 +269,11 @@ class _UserEntity implements UserEntity {
 }
 
 /// @nodoc
-abstract mixin class _$UserEntityCopyWith<$Res>
-    implements $UserEntityCopyWith<$Res> {
-  factory _$UserEntityCopyWith(
-          _UserEntity value, $Res Function(_UserEntity) _then) =
-      __$UserEntityCopyWithImpl;
+abstract mixin class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
+  factory _$UserEntityCopyWith(_UserEntity value, $Res Function(_UserEntity) _then) = __$UserEntityCopyWithImpl;
   @override
   @useResult
-  $Res call({String email, TokensEntity credentials});
+  $Res call({String email, ({String? access, String? refresh})? credentials});
 }
 
 /// @nodoc
@@ -308,7 +299,7 @@ class __$UserEntityCopyWithImpl<$Res> implements _$UserEntityCopyWith<$Res> {
       credentials: freezed == credentials
           ? _self.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
-              as TokensEntity,
+              as ({String? access, String? refresh})?,
     ));
   }
 }

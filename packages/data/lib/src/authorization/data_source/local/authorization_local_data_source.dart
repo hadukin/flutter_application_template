@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 
 abstract interface class AuthorizationLocalDataSource {
-  Future<TokensEntity> getTokens();
+  Future<({String? access, String? refresh})?> getTokens();
 
-  Future<void> saveTokens({required String? access, required String? refresh});
+  Future<void> write({required String? access, required String? refresh});
 
-  Future<void> deleteTokens();
+  Future<void> delete();
 }

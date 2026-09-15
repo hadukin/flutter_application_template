@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 abstract interface class AuthorizationUseCase {
   const AuthorizationUseCase();
 
-  Future<TokensEntity> getTokens();
+  Future<({String? access, String? refresh})?> getTokens();
 
   Future<UserEntity> signIn({
     required String email,

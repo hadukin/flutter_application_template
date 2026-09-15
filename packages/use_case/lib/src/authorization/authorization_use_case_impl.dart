@@ -6,7 +6,7 @@ class AuthorizationUseCaseImpl implements AuthorizationUseCase {
   const AuthorizationUseCaseImpl({required AuthorizationRepository repository}) : _repository = repository;
 
   @override
-  Future<TokensEntity?> getTokens() {
+  Future<({String? access, String? refresh})?> getTokens() {
     return _repository.getTokens();
   }
 

@@ -7,6 +7,6 @@ part 'user_entity.freezed.dart';
 abstract class UserEntity with _$UserEntity {
   const factory UserEntity({
     required String email,
-    required TokensEntity credentials,
+    required ({String? access, String? refresh})? credentials,
   }) = _UserEntity;
 }
