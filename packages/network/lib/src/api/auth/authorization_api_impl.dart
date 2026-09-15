@@ -1,5 +1,6 @@
 import 'package:network/src/api/auth/authorization_api.dart';
 import 'package:network/src/api/auth/dto/user_dto.dart';
+import 'package:network/src/api/auth/request/create_test.dart';
 import 'package:network/src/api/auth/request/sign_in_request.dart';
 import 'package:network/src/client/dio_client/client_provider.dart';
 
@@ -23,5 +24,10 @@ final class AuthApiImpl implements AuthApi {
   @override
   Future<void> signOut() async {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> createTest() {
+    return _client.request(CreateTestRequest());
   }
 }

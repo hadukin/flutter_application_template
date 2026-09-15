@@ -3,36 +3,27 @@ import 'package:domain/domain.dart';
 import 'package:storage/storage.dart';
 
 final class AuthorizationLocalDataSourceImpl implements AuthorizationLocalDataSource {
-  final _accessTokenKey = 'ACCESS_TOKEN';
-  final _refreshTokenKey = 'REFRESH_TOKEN';
-
-  final SecureStorage _secureStorage;
+  final TokenManager _tokenManager;
 
   AuthorizationLocalDataSourceImpl({
-    required SecureStorage secureStorage,
-  }) : _secureStorage = secureStorage;
+    required TokenManager tokenManager,
+  }) : _tokenManager = tokenManager;
 
   @override
   Future<TokensEntity> getTokens() async {
-    final access = await _secureStorage.read(_accessTokenKey);
-    final refresh = await _secureStorage.read(_refreshTokenKey);
-
-    if (access == null || refresh == null) return null;
-
-    return (access: access, refresh: refresh);
+    final pair = await _tokenManager.read();
+    if (pair?.access == null || pair?.refresh == null) return null;
+    return (access: pair?.access, refresh: pair?.refresh);
   }
 
   @override
   Future<void> saveTokens({required String? access, required String? refresh}) async {
     if (access == null || refresh == null) return;
-
-    await _secureStorage.write(_accessTokenKey, access);
-    await _secureStorage.write(_refreshTokenKey, refresh);
+    await _tokenManager.write(access: access, refresh: refresh);
   }
 
   @override
   Future<void> deleteTokens() async {
-    await _secureStorage.delete(_accessTokenKey);
-    await _secureStorage.delete(_refreshTokenKey);
+    await _tokenManager.delete();
   }
 }

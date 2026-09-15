@@ -11,7 +11,7 @@
       "program": "lib/main.dart",
       "args": [
         "--dart-define",
-        "BASE_URL=https://flutter-template.wiremockapi.cloud",
+        "BASE_URL=http://10.0.2.2:8080",
       ]
     }
   ]

@@ -4,7 +4,7 @@ import 'package:network/network.dart';
 abstract class UserMapper {
   static UserEntity transform(UserDto dto) {
     return UserEntity(
-      email: dto.email,
+      email: dto.id,
       credentials: (
         access: dto.accessToken,
         refresh: dto.refreshToken,

@@ -9,4 +9,6 @@ abstract interface class AuthorizationRepository {
   Future<void> signOut();
 
   Future<TokensEntity> getTokens();
+
+  Future<void> createTest();
 }

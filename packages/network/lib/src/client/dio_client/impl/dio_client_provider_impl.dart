@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:network/network.dart';
 import 'package:network/src/common/base_request.dart';
 import 'package:network/src/client/dio_client/impl/base_dio_client_provider.dart';
 import 'package:network/src/common/base_response.dart';
+import 'package:storage/storage.dart';
 
 final class DioClientProviderImpl extends BaseDioClientProvider {
   final Dio _dio;
-  final TokenStore _tokenStore;
+  final TokenManager _tokenManager;
 
   DioClientProviderImpl({
     required Dio dio,
-    required TokenStore tokenStore,
+    required TokenManager tokenManager,
   })  : _dio = dio,
-        _tokenStore = tokenStore;
+        _tokenManager = tokenManager;
 
   @override
   Future<BaseResponse> request(BaseRequest request) async {
@@ -24,7 +24,7 @@ final class DioClientProviderImpl extends BaseDioClientProvider {
         options: Options(
           method: request.method.name,
           headers: buildHeaders(
-            accessToken: _tokenStore.value?.access,
+            accessToken: _tokenManager.tokens?.access,
             headers: request.headers,
           ),
         ),

@@ -17,13 +17,12 @@ class AuthorizationDiModule implements BaseDiModule {
     );
 
     instance.registerLazySingleton<AuthorizationLocalDataSource>(
-      AuthorizationLocalDataSourceImpl(
-        secureStorage: instance.getIt(),
-      ),
+      AuthorizationLocalDataSourceImpl(tokenManager: instance.getIt()),
     );
 
     instance.registerLazySingleton<AuthorizationRepository>(
       AuthorizationRepositoryImpl(
+        tokenManager: instance.getIt(),
         authorizationRemoteDataSource: instance.getIt(),
         authorizationLocalDataSource: instance.getIt(),
       ),

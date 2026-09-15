@@ -5,7 +5,11 @@ final _getIt = GetIt.instance;
 final class _DiImpl implements Di {
   @override
   Future<void> ensureInitialized() async {
-    final modules = [const StorageDiModule(), const NetworkDiModule(), const DataDiModule()];
+    final modules = [
+      const StorageDiModule(),
+      const NetworkDiModule(),
+      const DataDiModule(),
+    ];
 
     for (final module in modules) {
       await registerModule(module);
@@ -48,5 +52,15 @@ final class _DiImpl implements Di {
   @override
   bool isRegistered<T extends Object>({Object? instance, String? instanceName}) {
     return _getIt.isRegistered(instance: instance, instanceName: instanceName);
+  }
+
+  @override
+  Future<void> pushScope(BaseScope scope) async {
+    await _getIt.pushNewScopeAsync(scopeName: scope.name, init: scope.init, dispose: scope.dispose);
+  }
+
+  @override
+  Future<void> dropScope(String name) async {
+    await _getIt.dropScope(name);
   }
 }

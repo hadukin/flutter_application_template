@@ -7,4 +7,6 @@ abstract interface class AuthApi {
   });
 
   Future<void> signOut();
+
+  Future<void> createTest();
 }

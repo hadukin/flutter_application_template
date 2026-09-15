@@ -18,6 +18,8 @@ dependencies:
   dio: ^5.8.0+1
   pretty_dio_logger: ^1.4.0
   json_annotation: ^4.9.0
+  storage:
+    path: ../storage
 
 dev_dependencies:
   flutter_test:

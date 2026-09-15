@@ -24,4 +24,9 @@ class AuthorizationRemoteDataSourceImpl implements AuthorizationRemoteDataSource
   Future<void> signOut() async {
     await _api.signOut();
   }
+
+  @override
+  Future<void> createTest() {
+    return _api.createTest();
+  }
 }

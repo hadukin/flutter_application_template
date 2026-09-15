@@ -13,7 +13,7 @@ class NetworkDiModule implements BaseDiModule {
 
   @override
   Future<void> register(Di instance) async {
-    instance.registerSingleton<TokenStore>(TokenStore());
+    // instance.registerSingleton<TokenStore>(TokenStore());
 
     final dio = Dio(BaseOptions(baseUrl: NetworkConfig.baseUrl));
 
@@ -21,7 +21,8 @@ class NetworkDiModule implements BaseDiModule {
       PrettyDioLogger(requestHeader: true, requestBody: true, compact: false),
       DioAuthorizationInterceptor(
         dio: dio,
-        tokenStore: instance.getIt(),
+        tokenManager: instance.getIt(),
+        onAuthExpired: () {},
       ),
     ];
 
@@ -30,7 +31,7 @@ class NetworkDiModule implements BaseDiModule {
     instance.registerSingleton<ClientProvider>(
       DioClientProviderImpl(
         dio: dio,
-        tokenStore: instance.getIt(),
+        tokenManager: instance.getIt(),
       ),
     );
 

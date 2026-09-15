@@ -17,4 +17,9 @@ class AuthorizationUseCaseImpl implements AuthorizationUseCase {
 
   @override
   Future<void> signOut() => _repository.signOut();
+
+  @override
+  Future<void> createTest() {
+    return _repository.createTest();
+  }
 }

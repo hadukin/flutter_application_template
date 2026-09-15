@@ -26,4 +26,3 @@ mixin RouterQueryBuilderMixin {
     return result;
   }
 }
-

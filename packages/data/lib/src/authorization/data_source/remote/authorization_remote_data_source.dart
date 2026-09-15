@@ -7,4 +7,6 @@ abstract interface class AuthorizationRemoteDataSource {
   });
 
   Future<void> signOut();
+
+  Future<void> createTest();
 }

@@ -11,6 +11,7 @@ abstract base class BaseDioClientProvider implements ClientProvider {
     // Headers.acceptHeader: Headers.jsonContentType,
 
     return {
+      ...?headers,
       if (accessToken != null) NetworkConfig.authHeader: '${NetworkConfig.bearerPrefix} $accessToken',
     };
   }

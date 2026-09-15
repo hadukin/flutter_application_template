@@ -4,8 +4,7 @@ abstract interface class NetworkConfig {
   static const authHeader = 'Authorization';
   static const bearerPrefix = 'Bearer';
 
-  static String baseUrl =
-      const String.fromEnvironment('BASE_URL', defaultValue: 'https://flutter-template.wiremockapi.cloud');
+  static String baseUrl = const String.fromEnvironment('BASE_URL', defaultValue: 'http://10.0.2.2:8080');
 
   static Map<String, String> buildAuthorizationHeader(String? token) {
     if (token != null) return {authHeader: '${NetworkConfig.bearerPrefix} $token'};

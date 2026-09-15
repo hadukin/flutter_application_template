@@ -38,4 +38,8 @@ abstract final class Di {
     dynamic param1,
     dynamic param2,
   });
+
+  Future<void> pushScope(BaseScope scope);
+
+  Future<void> dropScope(String name);
 }

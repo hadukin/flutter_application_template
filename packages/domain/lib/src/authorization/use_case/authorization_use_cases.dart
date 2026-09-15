@@ -11,4 +11,6 @@ abstract interface class AuthorizationUseCase {
   });
 
   Future<void> signOut();
+
+  Future<void> createTest();
 }

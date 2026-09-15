@@ -21,7 +21,7 @@ final class SignInRequest implements BaseRequest {
   Map<String, dynamic>? get queryParameters => null;
 
   @override
-  String get url => '/login';
+  String get url => '/v1/internal/sign_up';
 
   @override
   RequestMethod get method => RequestMethod.POST;

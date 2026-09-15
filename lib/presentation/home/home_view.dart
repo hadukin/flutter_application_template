@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:di/di.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_template/ui_di_module.dart';
 
@@ -11,9 +12,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      appBar: AppBar(title: const Text('Home')),
       body: Center(
         child: IntrinsicWidth(
           child: Column(
@@ -52,6 +51,14 @@ class HomeView extends StatelessWidget {
                   Di.instance.getIt<Graph>().navigator.push('/root-cupertino-dialog-example');
                 },
                 child: Text('Open cuprtino dialog root'),
+              ),
+
+              ElevatedButton(
+                onPressed: () async {
+                  await Di.instance.getIt<AuthorizationUseCase>().createTest();
+                  // await Di.instance.getIt<AuthorizationRepository>().createTest();
+                },
+                child: Text('Test'),
               ),
             ],
           ),
