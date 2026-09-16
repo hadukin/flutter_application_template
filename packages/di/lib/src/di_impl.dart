@@ -64,26 +64,27 @@ final class _DiImpl implements Di {
   }
 
   @override
-  Future<bool> pushScope(BaseScope scope) async {
-    bool isReady = false;
+  Future<BaseScope?> pushScope(BaseScope scope) async {
+    if (_scopes.contains(scope.name)) return scope;
+
     await _getIt.pushNewScopeAsync(
       scopeName: scope.name,
       init: (_) async {
-        isReady = await scope.init(this);
+        await scope.init(this);
       },
       dispose: scope.dispose,
     );
 
-    return isReady;
+    _scopes.add(scope.name);
+
+    return scope;
   }
 
   @override
   Future<void> dropScope(String name) async {
+    _scopes.remove(name);
     await _getIt.dropScope(name);
   }
 
-  @override
-  Future<bool> pushTodoScope() async {
-    return pushScope(TodoDiModule());
-  }
+  Set<String> _scopes = {};
 }

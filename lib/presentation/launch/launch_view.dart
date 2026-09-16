@@ -7,6 +7,7 @@ import 'package:flutter_application_template/constants.dart';
 import 'package:flutter_application_template/generated/assets.gen.dart';
 import 'package:flutter_application_template/generated/locale_keys.g.dart';
 import 'package:flutter_application_template/presentation/launch/launch_view_model.dart';
+import 'package:flutter_application_template/ui_di_module.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -91,6 +92,14 @@ class _LaunchViewState extends State<LaunchView> {
                             child: const Text('RU locale'),
                           ),
                         ],
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Di.instance.getIt<Graph>().navigator.navigate(
+                            '/home',
+                          );
+                        },
+                        child: const Text('EN locale'),
                       ),
                     ],
                   ),

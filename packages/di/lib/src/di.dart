@@ -39,11 +39,7 @@ abstract final class Di {
     dynamic param2,
   });
 
-  Future<void> pushScope(BaseScope scope);
+  Future<BaseScope?> pushScope(BaseScope scope);
 
   Future<void> dropScope(String name);
-
-  Future<bool> pushTodoScope();
 }
-
-// abstract interface class TodoDiModules implements BaseDiModule, BaseScope {}

@@ -10,6 +10,10 @@ class TodoDiModule implements BaseDiModule, BaseScope {
   @override
   bool isReady = false;
 
+  TodoAddUseCase get todoAddUseCase => Di.instance.getIt();
+
+  TodoGetAllUseCase get todoGetAllUseCase => Di.instance.getIt();
+
   @override
   Future<void> register(Di instance) async {
     instance.registerLazySingleton<TodoLocalDataSource>(
@@ -33,7 +37,6 @@ class TodoDiModule implements BaseDiModule, BaseScope {
   @override
   FutureOr<dynamic> dispose() {
     isReady = false;
-    print('DISPOSE SCOPE');
   }
 
   @override

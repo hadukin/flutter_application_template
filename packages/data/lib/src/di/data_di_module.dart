@@ -1,7 +1,6 @@
 import 'package:data/src/analytics/di/analytics_di_module.dart';
 import 'package:data/src/authorization/di/authorization_di_module.dart';
 import 'package:data/src/store/store_di_module.dart';
-import 'package:data/src/todo/di/todo_di_module.dart';
 import 'package:di/di.dart';
 
 class DataDiModule implements BaseDiModule {

@@ -26,7 +26,11 @@ class ProfileView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Center(child: Text('RESULT: ${isLoading ? 'Loading...' : data}')),
+                      Center(
+                        child: Text(
+                          'RESULT: ${isLoading ? 'Loading...' : data}',
+                        ),
+                      ),
                       ElevatedButton(
                         onPressed: () async {
                           setState(() {
@@ -49,7 +53,9 @@ class ProfileView extends StatelessWidget {
                             data = 0;
                             isLoading = true;
                           });
-                          await Future.delayed(const Duration(milliseconds: 500));
+                          await Future.delayed(
+                            const Duration(milliseconds: 500),
+                          );
                           final result = _fibonacci(40);
                           setState(() {
                             data = result;
@@ -61,12 +67,21 @@ class ProfileView extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () async {
                           // await Di.instance.getIt<AuthorizationUseCase>().signOut();
-                          final logoutUseCase = Di.instance.getIt<LogoutUseCase>();
+                          final logoutUseCase = Di.instance
+                              .getIt<LogoutUseCase>();
                           await logoutUseCase(EmptyUseCaseParam());
 
-                          Di.instance.getIt<Graph>().navigator.navigate('/launch');
+                          Di.instance.getIt<Graph>().navigator.navigate(
+                            '/launch',
+                          );
                         },
                         child: const Text('Logout'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Di.instance.getIt<TodoGetAllUseCase>();
+                        },
+                        child: Text('get all'),
                       ),
                     ],
                   ),
