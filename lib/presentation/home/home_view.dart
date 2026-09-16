@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:di/di.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_template/ui_di_module.dart';
 
@@ -28,33 +29,41 @@ class HomeView extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<Graph>().navigator.push('/home/bottom-sheet-example');
+                  Di.instance.getIt<Graph>().navigator.push(
+                    '/home/bottom-sheet-example',
+                  );
                 },
                 child: Text('Open sheet'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<Graph>().navigator.push('/bottom-sheet-example');
+                  Di.instance.getIt<Graph>().navigator.push(
+                    '/bottom-sheet-example',
+                  );
                 },
                 child: Text('Open sheet root'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<Graph>().navigator.push('/root-dialog-example');
+                  Di.instance.getIt<Graph>().navigator.push(
+                    '/root-dialog-example',
+                  );
                 },
                 child: Text('Open dialog root'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Di.instance.getIt<Graph>().navigator.push('/root-cupertino-dialog-example');
+                  Di.instance.getIt<Graph>().navigator.push(
+                    '/root-cupertino-dialog-example',
+                  );
                 },
                 child: Text('Open cuprtino dialog root'),
               ),
 
               ElevatedButton(
                 onPressed: () async {
-                  await Di.instance.getIt<AuthorizationUseCase>().createTest();
-                  // await Di.instance.getIt<AuthorizationRepository>().createTest();
+                  Log.i.debug('message');
+                  await Di.instance.getIt<TestUseCase>()(EmptyUseCaseParam());
                 },
                 child: Text('Test'),
               ),

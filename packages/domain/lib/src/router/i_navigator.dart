@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'types.dart';
+
 import 'package:flutter/widgets.dart';
 
 abstract base class INavigator<D> with RouterQueryBuilderMixin {

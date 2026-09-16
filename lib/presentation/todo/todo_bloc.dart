@@ -3,7 +3,10 @@ import 'package:domain/domain.dart';
 import 'package:flutter_application_template/presentation/todo/todo_event.dart';
 import 'package:flutter_application_template/presentation/todo/todo_state.dart';
 
-class TodoBloc({required final TodoUseCases _todoUseCases}) extends Bloc<TodoEvent, TodoState> {
+class TodoBloc({
+  required final TodoAddUseCase _todoAddUseCase,
+  required final TodoGetAllUseCase _todoGetAllUseCase,
+}) extends Bloc<TodoEvent, TodoState> {
   this : super(TodoState()) {
     on<TodoEvent>(
       (event, emit) => switch (event) {
@@ -15,14 +18,27 @@ class TodoBloc({required final TodoUseCases _todoUseCases}) extends Bloc<TodoEve
   }
 
   Future<void> _onAdd(TodoAddEvent event, Emitter<TodoState> emit) async {
-    final newTodo = await _todoUseCases.add(event.title);
-    emit(state.copyWith(todos: [...state.todos, newTodo]));
+    final (:data, :err) = await _todoAddUseCase(
+      TodoAddUseCaseParam(event.title),
+    );
+    if (err != null) {
+      // Show error
+      return;
+    }
+
+    emit(state.copyWith(todos: [...state.todos, ?data]));
   }
 
   Future<void> _onGetAll(TodoGetAllEvent event, Emitter<TodoState> emit) async {
     emit(state.copyWith(isLoading: true));
     await Future.delayed(Duration(milliseconds: 500));
-    final response = await _todoUseCases.getAll();
-    emit(state.copyWith(todos: response, isLoading: false));
+    final (:data, :err) = await _todoGetAllUseCase(EmptyUseCaseParam());
+
+    if (err != null) {
+      // Show error
+      return;
+    }
+
+    emit(state.copyWith(todos: data ?? [], isLoading: false));
   }
 }

@@ -6,19 +6,24 @@ import 'package:network/src/client/dio_client/impl/dio_client_provider_impl.dart
 import 'package:network/src/client/dio_client/client_provider.dart';
 import 'package:network/src/client/interceptors/authorization_interceptor.dart';
 import 'package:network/src/common/network_config.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
+import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
 class NetworkDiModule implements BaseDiModule {
   const NetworkDiModule();
 
   @override
   Future<void> register(Di instance) async {
-    // instance.registerSingleton<TokenStore>(TokenStore());
-
     final dio = Dio(BaseOptions(baseUrl: NetworkConfig.baseUrl));
 
     final List<Interceptor> interceptors = [
-      PrettyDioLogger(requestHeader: true, requestBody: true, compact: false),
+      TalkerDioLogger(
+        settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseHeaders: true,
+          printResponseMessage: true,
+        ),
+      ),
       DioAuthorizationInterceptor(
         dio: dio,
         tokenManager: instance.getIt(),
@@ -29,14 +34,9 @@ class NetworkDiModule implements BaseDiModule {
     dio.interceptors.addAll(interceptors);
 
     instance.registerSingleton<ClientProvider>(
-      DioClientProviderImpl(
-        dio: dio,
-        tokenManager: instance.getIt(),
-      ),
+      DioClientProviderImpl(dio: dio, tokenManager: instance.getIt()),
     );
 
-    instance.registerSingleton<AuthApi>(AuthApiImpl(
-      client: instance.getIt(),
-    ));
+    instance.registerSingleton<AuthApi>(AuthApiImpl(client: instance.getIt()));
   }
 }

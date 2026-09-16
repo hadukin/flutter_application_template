@@ -33,7 +33,10 @@ final class GoRoutingSetupImpl implements IRouterBuilder {
             path: '/root-dialog-example',
             pageBuilder: (context, state) {
               return const DialogPage(
-                child: Padding(padding: EdgeInsets.all(20.0), child: Text('Dialog')),
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text('Dialog'),
+                ),
               );
             },
           ),
@@ -41,7 +44,10 @@ final class GoRoutingSetupImpl implements IRouterBuilder {
             path: '/root-cupertino-dialog-example',
             pageBuilder: (context, state) {
               return const CupertinoDialogPage(
-                child: Padding(padding: EdgeInsets.all(20.0), child: Text('Cupertino dialog')),
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text('Cupertino dialog'),
+                ),
               );
             },
           ),
@@ -112,12 +118,16 @@ final class GoRoutingSetupImpl implements IRouterBuilder {
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text('Bottom sheet content'),
                                       IconButton(
                                         onPressed: () {
-                                          Di.instance.getIt<Graph>().navigator.pop();
+                                          Di.instance
+                                              .getIt<Graph>()
+                                              .navigator
+                                              .pop();
                                         },
                                         icon: Icon(Icons.close),
                                       ),
@@ -193,7 +203,10 @@ class _ScaffoldWithBottomNavigation extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onTabTap,
         items: tabs.map((tab) {
-          return BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label);
+          return BottomNavigationBarItem(
+            icon: Icon(tab.icon),
+            label: tab.label,
+          );
         }).toList(),
       ),
     );

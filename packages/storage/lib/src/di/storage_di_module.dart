@@ -21,8 +21,12 @@ class StorageDiModule implements BaseDiModule {
     instance.registerSingleton<Database>(DatabaseImpl(db: Db.defaults()));
     await instance.getIt<PreferencesStorage>().init();
 
-    instance.registerSingleton<TokenStorage>(TokenStorageImpl(secureStorage: instance.getIt()));
-    instance.registerSingleton<TokenManager>(TokenManagerImpl(storage: instance.getIt()));
+    instance.registerSingleton<TokenStorage>(
+      TokenStorageImpl(secureStorage: instance.getIt()),
+    );
+    instance.registerSingleton<TokenManager>(
+      TokenManagerImpl(storage: instance.getIt()),
+    );
 
     instance.getIt<TokenManager>().init();
   }

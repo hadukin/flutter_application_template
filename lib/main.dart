@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:di/di.dart';
 import 'package:domain/domain.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,7 +33,7 @@ Future<void> main() async {
       );
     },
     (error, stackTrace) {
-      Log.i.error('$error', error: error, stackTrace: stackTrace);
+      Log.i.debug('$error', error: error, stackTrace: stackTrace);
     },
   );
 }

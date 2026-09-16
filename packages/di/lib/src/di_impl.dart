@@ -27,12 +27,18 @@ final class _DiImpl implements Di {
   }
 
   @override
-  void registerLazySingleton<T extends Object>(T instance, {String? instanceName}) {
+  void registerLazySingleton<T extends Object>(
+    T instance, {
+    String? instanceName,
+  }) {
     _getIt.registerLazySingleton(() => instance, instanceName: instanceName);
   }
 
   @override
-  void registerFactory<T extends Object>(T Function() factoryFunc, {String? instanceName}) {
+  void registerFactory<T extends Object>(
+    T Function() factoryFunc, {
+    String? instanceName,
+  }) {
     _getIt.registerFactory(factoryFunc, instanceName: instanceName);
   }
 
@@ -50,17 +56,34 @@ final class _DiImpl implements Di {
   }
 
   @override
-  bool isRegistered<T extends Object>({Object? instance, String? instanceName}) {
+  bool isRegistered<T extends Object>({
+    Object? instance,
+    String? instanceName,
+  }) {
     return _getIt.isRegistered(instance: instance, instanceName: instanceName);
   }
 
   @override
-  Future<void> pushScope(BaseScope scope) async {
-    await _getIt.pushNewScopeAsync(scopeName: scope.name, init: scope.init, dispose: scope.dispose);
+  Future<bool> pushScope(BaseScope scope) async {
+    bool isReady = false;
+    await _getIt.pushNewScopeAsync(
+      scopeName: scope.name,
+      init: (_) async {
+        isReady = await scope.init(this);
+      },
+      dispose: scope.dispose,
+    );
+
+    return isReady;
   }
 
   @override
   Future<void> dropScope(String name) async {
     await _getIt.dropScope(name);
+  }
+
+  @override
+  Future<bool> pushTodoScope() async {
+    return pushScope(TodoDiModule());
   }
 }

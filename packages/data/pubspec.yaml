@@ -20,8 +20,6 @@ dependencies:
     path: ../di
   storage:
     path: ../storage
-  use_case:
-    path: ../use_case
 
 dev_dependencies:
   flutter_test:

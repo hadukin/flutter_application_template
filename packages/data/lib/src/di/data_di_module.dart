@@ -13,7 +13,7 @@ class DataDiModule implements BaseDiModule {
       StoreDiModule(),
       AnalyticsDiModule(),
       AuthorizationDiModule(),
-      TodoDiModule(),
+      // TodoDiModule(),
     ];
 
     for (final module in modules) {

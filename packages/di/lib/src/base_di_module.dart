@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:di/src/di.dart';
-import 'package:get_it/get_it.dart';
 
 abstract interface class BaseDiModule {
   Future<void> register(Di instance);
@@ -14,7 +13,9 @@ extension DiExtension on Di {
 abstract interface class BaseScope {
   String get name => runtimeType.toString();
 
-  Future<void> init(GetIt getit);
+  bool get isReady;
+
+  Future<bool> init(Di getit);
 
   FutureOr dispose();
 }

@@ -18,15 +18,26 @@ class _TodoViewState extends State<TodoView> {
   final controller = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Di.instance.pushTodoScope().then((value) {
+      print('SSS: $value');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TodoBloc(todoUseCases: Di.instance.getIt()),
+      create: (context) => TodoBloc(
+        todoAddUseCase: Di.instance.getIt(),
+        todoGetAllUseCase: Di.instance.getIt(),
+      ),
       child: BlocBuilder<TodoBloc, TodoState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Todo'),
-            ),
+            appBar: AppBar(title: const Text('Todo')),
             body: Column(
               children: [
                 Padding(
@@ -40,14 +51,13 @@ class _TodoViewState extends State<TodoView> {
                   child: state.isLoading
                       ? Center(child: CircularProgressIndicator.adaptive())
                       : ListView.separated(
-                          separatorBuilder: (context, index) => SizedBox(height: 8),
+                          separatorBuilder: (context, index) =>
+                              SizedBox(height: 8),
                           itemCount: state.todos.length,
                           itemBuilder: (context, index) {
                             final todo = state.todos[index];
 
-                            return ListTile(
-                              title: Text(todo.title),
-                            );
+                            return ListTile(title: Text(todo.title));
                           },
                         ),
                 ),

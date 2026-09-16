@@ -12,7 +12,6 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-
   get_it: ^9.1.0
 
   domain:

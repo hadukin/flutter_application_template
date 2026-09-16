@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:storage/storage.dart';
+import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
+import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
 class DioAuthorizationInterceptor extends QueuedInterceptor {
   final Dio _dio;
@@ -15,8 +16,8 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
     required Dio dio,
     required TokenManager tokenManager,
     required this.onAuthExpired,
-  })  : _dio = dio,
-        _tokenManager = tokenManager;
+  }) : _dio = dio,
+       _tokenManager = tokenManager;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -25,7 +26,8 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
         options.path != '/v1/internal/sign_up' &&
         _tokenManager.tokens?.access != null &&
         _tokenManager.tokens?.access?.length != 0) {
-      options.headers['Authorization'] = 'Bearer ${_tokenManager.tokens?.access}';
+      options.headers['Authorization'] =
+          'Bearer ${_tokenManager.tokens?.access}';
     }
     handler.next(options);
   }
@@ -36,7 +38,8 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
     ErrorInterceptorHandler handler,
   ) async {
     // Если это не 401 Unauthorized или нет refresh токена, пропускаем дальше
-    if (err.response?.statusCode != 401 || _tokenManager.tokens?.refresh == null) {
+    if (err.response?.statusCode != 401 ||
+        _tokenManager.tokens?.refresh == null) {
       return handler.next(err);
     }
 
@@ -79,11 +82,15 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
   Future<String?> _refreshToken() async {
     final refreshTokenClient = Dio(_dio.options);
 
-    refreshTokenClient.interceptors.add(PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      compact: false,
-    ));
+    refreshTokenClient.interceptors.add(
+      TalkerDioLogger(
+        settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseHeaders: true,
+          printResponseMessage: true,
+        ),
+      ),
+    );
 
     try {
       final response = await refreshTokenClient.post(
@@ -95,7 +102,10 @@ class DioAuthorizationInterceptor extends QueuedInterceptor {
       final newRefreshToken = response.data['refresh_token'];
 
       if (newAccessToken != null && newAccessToken.isNotEmpty) {
-        await _tokenManager.write(access: newAccessToken, refresh: newRefreshToken);
+        await _tokenManager.write(
+          access: newAccessToken,
+          refresh: newRefreshToken,
+        );
         return newAccessToken;
       } else {
         throw Exception('Failed to refresh token: invalid response');

@@ -42,4 +42,8 @@ abstract final class Di {
   Future<void> pushScope(BaseScope scope);
 
   Future<void> dropScope(String name);
+
+  Future<bool> pushTodoScope();
 }
+
+// abstract interface class TodoDiModules implements BaseDiModule, BaseScope {}
