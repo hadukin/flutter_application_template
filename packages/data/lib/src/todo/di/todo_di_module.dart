@@ -36,6 +36,7 @@ class TodoDiModule implements BaseDiModule, BaseScope {
 
   @override
   FutureOr<dynamic> dispose() {
+    print('KEK/1:onDispose');
     isReady = false;
   }
 
@@ -47,4 +48,9 @@ class TodoDiModule implements BaseDiModule, BaseScope {
 
   @override
   String get name => 'todo-scope';
+
+  @override
+  FutureOr<dynamic> onDispose() {
+    print('KEK/2:onDispose');
+  }
 }

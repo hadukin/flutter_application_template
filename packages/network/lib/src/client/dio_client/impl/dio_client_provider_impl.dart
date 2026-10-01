@@ -4,16 +4,8 @@ import 'package:network/src/client/dio_client/impl/base_dio_client_provider.dart
 import 'package:network/src/common/base_response.dart';
 import 'package:storage/storage.dart';
 
-final class DioClientProviderImpl extends BaseDioClientProvider {
-  final Dio _dio;
-  final TokenManager _tokenManager;
-
-  DioClientProviderImpl({
-    required Dio dio,
-    required TokenManager tokenManager,
-  })  : _dio = dio,
-        _tokenManager = tokenManager;
-
+final class const DioClientProviderImpl({required final Dio _dio})
+    extends BaseDioClientProvider {
   @override
   Future<BaseResponse> request(BaseRequest request) async {
     try {
@@ -23,10 +15,10 @@ final class DioClientProviderImpl extends BaseDioClientProvider {
         queryParameters: request.queryParameters,
         options: Options(
           method: request.method.name,
-          headers: buildHeaders(
-            accessToken: _tokenManager.tokens?.access,
-            headers: request.headers,
-          ),
+          // headers: buildHeaders(
+          //   accessToken: _tokenManager.tokens?.access,
+          //   headers: request.headers,
+          // ),
         ),
       );
       return BaseResponse(statusCode: response.statusCode, data: response.data);

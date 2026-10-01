@@ -1,5 +1,6 @@
 import 'package:di/di.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:network/network.dart';
 import 'package:network/src/api/auth/authorization_api_impl.dart';
 import 'package:network/src/client/dio_client/impl/dio_client_provider_impl.dart';
@@ -17,26 +18,23 @@ class NetworkDiModule implements BaseDiModule {
     final dio = Dio(BaseOptions(baseUrl: NetworkConfig.baseUrl));
 
     final List<Interceptor> interceptors = [
-      TalkerDioLogger(
-        settings: const TalkerDioLoggerSettings(
-          printRequestHeaders: true,
-          printResponseHeaders: true,
-          printResponseMessage: true,
-        ),
-      ),
       DioAuthorizationInterceptor(
         dio: dio,
         tokenManager: instance.getIt(),
         onAuthExpired: () {},
       ),
+      TalkerDioLogger(
+        settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseHeaders: true,
+          printResponseMessage: true,
+          enabled: kDebugMode,
+        ),
+      ),
     ];
 
     dio.interceptors.addAll(interceptors);
-
-    instance.registerSingleton<ClientProvider>(
-      DioClientProviderImpl(dio: dio, tokenManager: instance.getIt()),
-    );
-
+    instance.registerSingleton<ClientProvider>(DioClientProviderImpl(dio: dio));
     instance.registerSingleton<AuthApi>(AuthApiImpl(client: instance.getIt()));
   }
 }

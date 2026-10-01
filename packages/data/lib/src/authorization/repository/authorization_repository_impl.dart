@@ -2,26 +2,17 @@ import 'package:data/src/authorization/data_source/local/authorization_local_dat
 import 'package:data/src/authorization/data_source/remote/authorization_remote_data_source.dart';
 import 'package:domain/domain.dart';
 
-class AuthorizationRepositoryImpl implements AuthorizationRepository {
-  final AuthorizationRemoteDataSource _remote;
-  final AuthorizationLocalDataSource _local;
-
-  AuthorizationRepositoryImpl({
-    required AuthorizationRemoteDataSource authorizationRemoteDataSource,
-    required AuthorizationLocalDataSource authorizationLocalDataSource,
-  })  : _remote = authorizationRemoteDataSource,
-        _local = authorizationLocalDataSource;
-
+class AuthorizationRepositoryImpl({
+  required final AuthorizationRemoteDataSource _remote,
+  required final AuthorizationLocalDataSource _local,
+}) implements AuthorizationRepository {
   @override
   Future<UserEntity> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      final response = await _remote.signIn(
-        email: email,
-        password: password,
-      );
+      final response = await _remote.signIn(email: email, password: password);
       await _local.write(
         access: response.credentials?.access,
         refresh: response.credentials?.refresh,

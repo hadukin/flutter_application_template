@@ -3,6 +3,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_template/presentation/home/home_view.dart';
 import 'package:flutter_application_template/presentation/launch/launch_view.dart';
+import 'package:flutter_application_template/presentation/notes/notes_root.dart';
 import 'package:flutter_application_template/presentation/profile/profile_details_view.dart';
 import 'package:flutter_application_template/presentation/profile/profile_view.dart';
 import 'package:flutter_application_template/presentation/todo/todo_view.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_application_template/router/go_router_impl/part/modal_bo
 import 'package:flutter_application_template/ui_di_module.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:notes/presentation/notes_detail_view.dart';
+import 'package:notes/presentation/notes_view.dart';
 
 final class GoRoutingSetupImpl implements IRouterBuilder {
   const GoRoutingSetupImpl();
@@ -94,6 +97,7 @@ final class GoRoutingSetupImpl implements IRouterBuilder {
                 body: shell,
                 tabs: const [
                   _TabItem(icon: Icons.home, label: 'Home'),
+                  _TabItem(icon: Icons.abc, label: 'Notes'),
                   _TabItem(icon: Icons.list, label: 'Todo'),
                   _TabItem(icon: Icons.settings, label: 'Profile'),
                 ],
@@ -140,6 +144,24 @@ final class GoRoutingSetupImpl implements IRouterBuilder {
                         },
                       ),
                     ],
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                routes: [
+                  GoRoute(
+                    path: '/notes',
+                    builder: (context, state) {
+                      return const NotesRoot();
+                    },
+                    // routes: [
+                    //   GoRoute(
+                    //     path: 'details',
+                    //     builder: (context, state) {
+                    //       return NotesDetailView();
+                    //     },
+                    //   ),
+                    // ],
                   ),
                 ],
               ),
@@ -200,6 +222,7 @@ class _ScaffoldWithBottomNavigation extends StatelessWidget {
     return Scaffold(
       body: body,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: onTabTap,
         items: tabs.map((tab) {

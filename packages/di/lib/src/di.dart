@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:data/data.dart';
 import 'package:di/di.dart';
+import 'package:domain/domain.dart';
 import 'package:get_it/get_it.dart';
 import 'package:network/network.dart';
 import 'package:storage/storage.dart';

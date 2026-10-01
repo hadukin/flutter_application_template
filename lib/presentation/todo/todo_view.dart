@@ -19,7 +19,7 @@ class _TodoViewState extends State<TodoView> {
 
   @override
   Widget build(BuildContext context) {
-    return DiScopeProvider<TodoDiModule>(
+    return DiScopeProviderWidget<TodoDiModule>(
       scope: TodoDiModule(),
       builder: (context, scope) {
         return BlocProvider(

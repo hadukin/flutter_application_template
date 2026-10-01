@@ -1,4 +1,5 @@
 abstract interface class TokenManager {
+  const TokenManager();
   Future<void> init();
   Future<({String? access, String? refresh})?> read();
   Future<void> write({required String? access, required String? refresh});

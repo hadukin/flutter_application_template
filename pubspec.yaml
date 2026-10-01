@@ -13,6 +13,7 @@ workspace:
   - packages/network
   - packages/storage
   - packages/data
+  - packages/notes
 
 dependencies:
   flutter:
@@ -36,6 +37,8 @@ dependencies:
     path: packages/di
   domain:
     path: packages/domain
+  notes:
+    path: packages/notes
 
 dev_dependencies:
   flutter_test:

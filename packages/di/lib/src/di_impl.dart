@@ -65,7 +65,11 @@ final class _DiImpl implements Di {
 
   @override
   Future<BaseScope?> pushScope(BaseScope scope) async {
-    if (_scopes.contains(scope.name)) return scope;
+    Log.i.debug(
+      'PUSH_SCOPE|already_contains: ${scope.name} ${_scopes.contains(scope.name)}',
+    );
+    if (_scopes.contains(scope.name)) return null;
+    Log.i.debug('PUSH_SCOPE|name: ${scope.name}');
 
     await _getIt.pushNewScopeAsync(
       scopeName: scope.name,
@@ -77,14 +81,19 @@ final class _DiImpl implements Di {
 
     _scopes.add(scope.name);
 
+    Log.i.debug('PUSH_SCOPE|list_scopes: $_scopes');
+
     return scope;
   }
 
   @override
   Future<void> dropScope(String name) async {
-    _scopes.remove(name);
+    Log.i.debug('DROP_SCOPE|name: $name');
+    Log.i.debug('DROP_SCOPE|before_list_scopes: $_scopes');
     await _getIt.dropScope(name);
+    _scopes.remove(name);
+    Log.i.debug('DROP_SCOPE|after_list_scopes: $_scopes');
   }
 
-  Set<String> _scopes = {};
+  final Set<String> _scopes = {};
 }

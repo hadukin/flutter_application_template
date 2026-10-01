@@ -19,8 +19,8 @@ class AuthorizationDiModule implements BaseDiModule {
 
     instance.registerLazySingleton<AuthorizationRepository>(
       AuthorizationRepositoryImpl(
-        authorizationRemoteDataSource: instance.getIt(),
-        authorizationLocalDataSource: instance.getIt(),
+        local: instance.getIt(),
+        remote: instance.getIt(),
       ),
     );
 

@@ -1,15 +1,10 @@
 import 'package:storage/src/secure_storage/secure_storage.dart';
 import 'package:storage/src/storages/token_storage/token_storage.dart';
 
-class TokenStorageImpl implements TokenStorage {
+class const TokenStorageImpl({required final SecureStorage _secureStorage})
+    implements TokenStorage {
   final _accessTokenKey = 'ACCESS_TOKEN';
   final _refreshTokenKey = 'REFRESH_TOKEN';
-
-  final SecureStorage _secureStorage;
-
-  TokenStorageImpl({
-    required SecureStorage secureStorage,
-  }) : _secureStorage = secureStorage;
 
   @override
   Future<({String? access, String? refresh})?> read() async {
@@ -22,7 +17,10 @@ class TokenStorageImpl implements TokenStorage {
   }
 
   @override
-  Future<void> write({required String? access, required String? refresh}) async {
+  Future<void> write({
+    required String? access,
+    required String? refresh,
+  }) async {
     if (access == null || refresh == null) return;
     await Future.wait([
       _secureStorage.write(_accessTokenKey, access),

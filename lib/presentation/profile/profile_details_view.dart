@@ -23,7 +23,7 @@ class _ProfileDetailsViewState extends State<ProfileDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('${widget.userId} ${widget.userName}')),
-      body: DiScopeProvider<TodoDiModule>(
+      body: DiScopeProviderWidget<TodoDiModule>(
         scope: TodoDiModule(),
         builder: (context, scope) {
           return Column(

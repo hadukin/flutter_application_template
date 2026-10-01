@@ -2,20 +2,18 @@ import 'package:rxdart/rxdart.dart';
 import 'package:storage/src/storages/token_manager/token_manager.dart';
 import 'package:storage/src/storages/token_storage/token_storage.dart';
 
-class TokenManagerImpl implements TokenManager {
-  final TokenStorage _storage;
-
-  TokenManagerImpl({
-    required TokenStorage storage,
-  }) : _storage = storage;
-
-  final _subject = BehaviorSubject<({String? access, String? refresh})?>.seeded(null)..asBroadcastStream();
+class TokenManagerImpl({required final TokenStorage _storage})
+    implements TokenManager {
+  final _subject = BehaviorSubject<({String? access, String? refresh})?>.seeded(
+    null,
+  )..asBroadcastStream();
 
   @override
   ({String? access, String? refresh})? get tokens => _subject.value;
 
   @override
-  ValueStream<({String? access, String? refresh})?> get stream => _subject.stream..distinct();
+  ValueStream<({String? access, String? refresh})?> get stream =>
+      _subject.stream..distinct();
 
   @override
   Future<void> init() async {
@@ -24,7 +22,10 @@ class TokenManagerImpl implements TokenManager {
   }
 
   @override
-  Future<void> write({required String? access, required String? refresh}) async {
+  Future<void> write({
+    required String? access,
+    required String? refresh,
+  }) async {
     await _storage.write(access: access, refresh: refresh);
     _subject.add((access: access, refresh: refresh));
   }

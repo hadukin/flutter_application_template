@@ -2,6 +2,8 @@ import 'package:network/src/client/dio_client/client_provider.dart';
 import 'package:network/src/common/network_config.dart';
 
 abstract base class BaseDioClientProvider implements ClientProvider {
+  const BaseDioClientProvider();
+
   Map<String, dynamic> buildHeaders({
     String? accessToken,
     required Map<String, String>? headers,
@@ -12,7 +14,8 @@ abstract base class BaseDioClientProvider implements ClientProvider {
 
     return {
       ...?headers,
-      if (accessToken != null) NetworkConfig.authHeader: '${NetworkConfig.bearerPrefix} $accessToken',
+      if (accessToken != null)
+        NetworkConfig.authHeader: '${NetworkConfig.bearerPrefix} $accessToken',
     };
   }
 }

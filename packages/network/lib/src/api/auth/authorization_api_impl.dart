@@ -4,19 +4,16 @@ import 'package:network/src/api/auth/request/create_test.dart';
 import 'package:network/src/api/auth/request/sign_in_request.dart';
 import 'package:network/src/client/dio_client/client_provider.dart';
 
-final class AuthApiImpl implements AuthApi {
-  final ClientProvider _client;
-
-  AuthApiImpl({
-    required ClientProvider client,
-  }) : _client = client;
-
+final class const AuthApiImpl({required final ClientProvider _client})
+    implements AuthApi {
   @override
   Future<UserDto> signIn({
     required String email,
     required String password,
   }) async {
-    final response = await _client.request(SignInRequest(email: email, password: password));
+    final response = await _client.request(
+      SignInRequest(email: email, password: password),
+    );
 
     return UserDto.fromJson(response.data);
   }
